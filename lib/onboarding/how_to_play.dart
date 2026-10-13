@@ -26,63 +26,74 @@ Future<void> showHowToPlay({
     ),
     builder: (sheetContext) => SafeArea(
       top: false,
-      child: Padding(
-        padding: EdgeInsets.fromLTRB(
-          24,
-          18,
-          24,
-          20 + MediaQuery.viewInsetsOf(sheetContext).bottom,
-        ),
-        child: Column(
-          key: const Key('how-to-play-sheet'),
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Center(
-              child: Container(
-                width: 42,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: const Color(0xFF52647C),
-                  borderRadius: BorderRadius.circular(2),
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(
+            24,
+            18,
+            24,
+            20 + MediaQuery.viewInsetsOf(sheetContext).bottom,
+          ),
+          child: Column(
+            key: const Key('how-to-play-sheet'),
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Center(
+                child: Container(
+                  width: 42,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF52647C),
+                    borderRadius: BorderRadius.circular(2),
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 20),
-            const Text(
-              'How to Play',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800),
-            ),
-            const SizedBox(height: 18),
-            const _TutorialRule(number: '1', text: 'Connect matching colors'),
-            const _TutorialRule(number: '2', text: 'Fill the entire board'),
-            const _TutorialRule(
-              number: '3',
-              text: "Paths can't cross or overlap",
-            ),
-            const SizedBox(height: 22),
-            FilledButton(
-              key: const Key('tutorial-got-it'),
-              style: FilledButton.styleFrom(
-                minimumSize: const Size.fromHeight(48),
-                backgroundColor: const Color(0xFF76A9FF),
-                foregroundColor: const Color(0xFF08111F),
+              const SizedBox(height: 20),
+              const Text(
+                'روش بازی',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800),
               ),
-              onPressed: () async {
-                if (completedThisDisplay) return;
-                completedThisDisplay = true;
-                logAnalyticsSafely(analyticsService.logTutorialComplete);
-                final preferences = await SharedPreferences.getInstance();
-                await preferences.setBool(tutorialCompletedPreferenceKey, true);
-                if (sheetContext.mounted) Navigator.of(sheetContext).pop();
-              },
-              child: const Text(
-                'Got it',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+              const SizedBox(height: 18),
+              const _TutorialRule(
+                number: '۱',
+                text: 'نقطه‌های هم‌رنگ را به هم وصل کن',
               ),
-            ),
-          ],
+              const _TutorialRule(
+                number: '۲',
+                text: 'همهٔ خانه‌های صفحه را پر کن',
+              ),
+              const _TutorialRule(
+                number: '۳',
+                text: 'مسیرها نباید همدیگر را قطع کنند یا روی هم بیفتند',
+              ),
+              const SizedBox(height: 22),
+              FilledButton(
+                key: const Key('tutorial-got-it'),
+                style: FilledButton.styleFrom(
+                  minimumSize: const Size.fromHeight(48),
+                  backgroundColor: const Color(0xFF76A9FF),
+                  foregroundColor: const Color(0xFF08111F),
+                ),
+                onPressed: () async {
+                  if (completedThisDisplay) return;
+                  completedThisDisplay = true;
+                  logAnalyticsSafely(analyticsService.logTutorialComplete);
+                  final preferences = await SharedPreferences.getInstance();
+                  await preferences.setBool(
+                    tutorialCompletedPreferenceKey,
+                    true,
+                  );
+                  if (sheetContext.mounted) Navigator.of(sheetContext).pop();
+                },
+                child: const Text(
+                  'متوجه شدم',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     ),

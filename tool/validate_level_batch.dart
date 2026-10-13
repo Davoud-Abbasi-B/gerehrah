@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:pathly/game/level_quality_validator.dart';
-import 'package:pathly/game/puzzle_level.dart';
+import 'package:gerehrah/game/level_quality_validator.dart';
+import 'package:gerehrah/game/puzzle_level.dart';
 
 void main(List<String> arguments) {
   if (arguments.length != 1) {

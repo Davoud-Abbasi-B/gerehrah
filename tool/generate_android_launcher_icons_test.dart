@@ -3,17 +3,23 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 const _appBackground = Color(0xFF08111F);
-const _markBackground = Color(0xFF172A45);
-const _markBorder = Color(0xFF315783);
-const _markForeground = Color(0xFF76A9FF);
 
 void main() {
-  testWidgets('generate Pathly Android launcher icons', (tester) async {
-    await _loadMaterialIcons();
+  testWidgets('generate Gerehrah Android launcher icons', (tester) async {
+    // Run explicitly with: flutter test tool/generate_android_launcher_icons_test.dart
+    // Keep the source logo intact; center it inside the adaptive safe zone.
+    late ui.Image logo;
+    await tester.runAsync(() async {
+      final codec = await ui.instantiateImageCodec(
+        File('assets/gerehrah_icon.png').readAsBytesSync(),
+      );
+      logo = (await codec.getNextFrame()).image;
+      codec.dispose();
+    });
+    addTearDown(logo.dispose);
     const densities = {
       'mdpi': 1.0,
       'hdpi': 1.5,
@@ -27,27 +33,30 @@ void main() {
       final foregroundSize = (108 * entry.value).round();
       await _render(
         tester,
+        logo: logo,
         size: legacySize,
         output: 'android/app/src/main/res/mipmap-${entry.key}/ic_launcher.png',
         backgroundShape: BoxShape.rectangle,
-        markFraction: 0.62,
+        markFraction: 0.90,
       );
       await _render(
         tester,
+        logo: logo,
         size: legacySize,
         output:
             'android/app/src/main/res/mipmap-${entry.key}/'
             'ic_launcher_round.png',
         backgroundShape: BoxShape.circle,
-        markFraction: 0.62,
+        markFraction: 0.70,
       );
       await _render(
         tester,
+        logo: logo,
         size: foregroundSize,
         output:
             'android/app/src/main/res/drawable-${entry.key}/'
             'ic_launcher_foreground.png',
-        markFraction: 60 / 108,
+        markFraction: 46 / 108,
       );
       // ignore: avoid_print
       print('Generated ${entry.key} launcher resources.');
@@ -57,30 +66,9 @@ void main() {
   });
 }
 
-Future<void> _loadMaterialIcons() async {
-  var directory = File(Platform.resolvedExecutable).parent;
-  while (true) {
-    final font = File(
-      '${directory.path}/bin/cache/artifacts/material_fonts/'
-      'materialicons-regular.otf',
-    );
-    if (font.existsSync()) {
-      final bytes = font.readAsBytesSync();
-      await (FontLoader(
-        'MaterialIcons',
-      )..addFont(Future.value(bytes.buffer.asByteData()))).load();
-      return;
-    }
-    final parent = directory.parent;
-    if (parent.path == directory.path) {
-      throw StateError('Unable to locate Flutter Material Icons font.');
-    }
-    directory = parent;
-  }
-}
-
 Future<void> _render(
   WidgetTester tester, {
+  required ui.Image logo,
   required int size,
   required String output,
   required double markFraction,
@@ -101,7 +89,12 @@ Future<void> _render(
             decoration: backgroundShape == null
                 ? const BoxDecoration()
                 : BoxDecoration(color: _appBackground, shape: backgroundShape),
-            child: Center(child: _PathlyMark(size: size * markFraction)),
+            child: Center(
+              child: SizedBox.square(
+                dimension: size * markFraction,
+                child: RawImage(image: logo, fit: BoxFit.contain),
+              ),
+            ),
           ),
         ),
       ),
@@ -117,32 +110,6 @@ Future<void> _render(
     final file = File(output);
     file.parent.createSync(recursive: true);
     file.writeAsBytesSync(bytes!.buffer.asUint8List());
+    image.dispose();
   });
-}
-
-class _PathlyMark extends StatelessWidget {
-  const _PathlyMark({required this.size});
-
-  final double size;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: size,
-      height: size,
-      decoration: BoxDecoration(
-        color: _markBackground,
-        borderRadius: BorderRadius.circular(size * 12 / 38),
-        border: Border.all(
-          color: _markBorder,
-          width: (size / 38).clamp(1, double.infinity),
-        ),
-      ),
-      child: Icon(
-        Icons.route_rounded,
-        color: _markForeground,
-        size: size * 24 / 38,
-      ),
-    );
-  }
 }

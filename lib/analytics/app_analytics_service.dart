@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_core/firebase_core.dart';
+
+const firebaseEnabled = bool.fromEnvironment('ENABLE_FIREBASE');
 
 const shareAppClickEventName = 'share_app_click';
 const levelCompleteEventName = 'level_complete';
@@ -86,6 +89,7 @@ class _FirebaseAnalyticsEventClient implements AnalyticsEventClient {
     required String name,
     Map<String, Object>? parameters,
   }) {
+    if (!firebaseEnabled || Firebase.apps.isEmpty) return Future<void>.value();
     return FirebaseAnalytics.instance.logEvent(
       name: name,
       parameters: parameters,

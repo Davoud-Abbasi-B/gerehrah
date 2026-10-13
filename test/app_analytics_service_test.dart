@@ -1,7 +1,14 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pathly/analytics/app_analytics_service.dart';
+import 'package:gerehrah/analytics/app_analytics_service.dart';
 
 void main() {
+  test('default analytics does not initialize or contact Firebase', () async {
+    expect(firebaseEnabled, isFalse);
+    final service = FirebaseAppAnalyticsService();
+    await service.logShareAppClick();
+    await service.logTutorialView();
+    await service.logInvalidMove();
+  });
   test(
     'share uses the single expected event name without parameters',
     () async {

@@ -2,7 +2,7 @@
   "levels": [
     {
       "id": "crossroads-4",
-      "title": "Crossroads",
+      "title": "چهارراه",
       "rows": 4,
       "columns": 4,
       "pairs": [
@@ -82,7 +82,7 @@
     },
     {
       "id": "three-lanes-5",
-      "title": "Three Lanes",
+      "title": "سه مسیر",
       "rows": 5,
       "columns": 5,
       "pairs": [
@@ -151,7 +151,7 @@
     },
     {
       "id": "four-bands-6",
-      "title": "Four Bands",
+      "title": "چهار نوار",
       "rows": 6,
       "columns": 6,
       "pairs": [
@@ -241,7 +241,7 @@
     },
     {
       "id": "corner-turn-4",
-      "title": "Corner Turn",
+      "title": "پیچ گوشه",
       "rows": 4,
       "columns": 4,
       "pairs": [
@@ -351,7 +351,7 @@
     },
     {
       "id": "woven-square-4",
-      "title": "Woven Square",
+      "title": "مربع درهم‌تنیده",
       "rows": 4,
       "columns": 4,
       "pairs": [
@@ -477,7 +477,7 @@
     },
     {
       "id": "riverbend-5",
-      "title": "Riverbend",
+      "title": "پیچ رودخانه",
       "rows": 5,
       "columns": 5,
       "pairs": [
@@ -639,7 +639,7 @@
     },
     {
       "id": "switchback-5",
-      "title": "Switchback",
+      "title": "پیچ برگشتی",
       "rows": 5,
       "columns": 5,
       "pairs": [
@@ -801,7 +801,7 @@
     },
     {
       "id": "courtyard-5",
-      "title": "Courtyard",
+      "title": "حیاط",
       "rows": 5,
       "columns": 5,
       "pairs": [
@@ -979,7 +979,7 @@
     },
     {
       "id": "roundabout-5",
-      "title": "Roundabout",
+      "title": "میدان",
       "rows": 5,
       "columns": 5,
       "pairs": [
@@ -1157,7 +1157,7 @@
     },
     {
       "id": "zigzag-5",
-      "title": "Zigzag",
+      "title": "زیگزاگ",
       "rows": 5,
       "columns": 5,
       "pairs": [
@@ -1335,7 +1335,7 @@
     },
     {
       "id": "tight-turns-5",
-      "title": "Tight Turns",
+      "title": "پیچ‌های تنگ",
       "rows": 5,
       "columns": 5,
       "pairs": [
@@ -1513,7 +1513,7 @@
     },
     {
       "id": "knotwork-5",
-      "title": "Knotwork",
+      "title": "گره‌چینی",
       "rows": 5,
       "columns": 5,
       "pairs": [
@@ -1691,7 +1691,7 @@
     },
     {
       "id": "divided-paths-6",
-      "title": "Divided Paths",
+      "title": "مسیرهای جدا",
       "rows": 6,
       "columns": 6,
       "pairs": [
@@ -1913,7 +1913,7 @@
     },
     {
       "id": "inner-loop-6",
-      "title": "Inner Loop",
+      "title": "حلقهٔ داخلی",
       "rows": 6,
       "columns": 6,
       "pairs": [
@@ -2135,7 +2135,7 @@
     },
     {
       "id": "narrow-gates-6",
-      "title": "Narrow Gates",
+      "title": "دروازه‌های باریک",
       "rows": 6,
       "columns": 6,
       "pairs": [
@@ -2357,7 +2357,7 @@
     },
     {
       "id": "grand-tour-6",
-      "title": "Grand Tour",
+      "title": "گردش بزرگ",
       "rows": 6,
       "columns": 6,
       "pairs": [
@@ -2579,7 +2579,7 @@
     },
     {
       "id": "spiral-lock-6",
-      "title": "Spiral Lock",
+      "title": "قفل مارپیچ",
       "rows": 6,
       "columns": 6,
       "pairs": [
@@ -2801,7 +2801,7 @@
     },
     {
       "id": "cross-current-6",
-      "title": "Cross Current",
+      "title": "جریان متقاطع",
       "rows": 6,
       "columns": 6,
       "pairs": [
@@ -3023,7 +3023,7 @@
     },
     {
       "id": "final-weave-6",
-      "title": "Final Weave",
+      "title": "بافت پایانی",
       "rows": 6,
       "columns": 6,
       "pairs": [
@@ -3245,7 +3245,7 @@
     },
     {
       "id": "master-route-6",
-      "title": "Master Route",
+      "title": "مسیر استاد",
       "rows": 6,
       "columns": 6,
       "pairs": [
@@ -3467,7 +3467,7 @@
     },
 {
       "id": "season-2-01",
-      "title": "Tangled Trail",
+      "title": "راه پرگره",
       "rows": 5,
       "columns": 5,
       "pairs": [
@@ -3645,7 +3645,7 @@
     },
     {
       "id": "season-2-02",
-      "title": "Four Corners",
+      "title": "چهار گوشه",
       "rows": 5,
       "columns": 5,
       "pairs": [
@@ -3823,7 +3823,7 @@
     },
     {
       "id": "season-2-03",
-      "title": "Hidden Passage",
+      "title": "گذر پنهان",
       "rows": 5,
       "columns": 5,
       "pairs": [
@@ -4001,7 +4001,7 @@
     },
     {
       "id": "season-2-04",
-      "title": "Switching Yard",
+      "title": "ایستگاه تغییر مسیر",
       "rows": 6,
       "columns": 6,
       "pairs": [
@@ -4223,7 +4223,7 @@
     },
     {
       "id": "season-2-05",
-      "title": "Braided River",
+      "title": "رودخانهٔ بافته",
       "rows": 6,
       "columns": 6,
       "pairs": [
@@ -4445,7 +4445,7 @@
     },
     {
       "id": "season-2-06",
-      "title": "Pinch Point",
+      "title": "تنگنا",
       "rows": 6,
       "columns": 6,
       "pairs": [
@@ -4667,7 +4667,7 @@
     },
     {
       "id": "season-2-07",
-      "title": "Crossed Signals",
+      "title": "علامت‌های متقاطع",
       "rows": 6,
       "columns": 6,
       "pairs": [
@@ -4889,7 +4889,7 @@
     },
     {
       "id": "season-2-08",
-      "title": "Narrow Escape",
+      "title": "راه فرار",
       "rows": 6,
       "columns": 6,
       "pairs": [
@@ -5111,7 +5111,7 @@
     },
     {
       "id": "season-2-09",
-      "title": "Turning Tides",
+      "title": "تغییر جریان",
       "rows": 6,
       "columns": 6,
       "pairs": [
@@ -5333,7 +5333,7 @@
     },
     {
       "id": "season-2-10",
-      "title": "Crowded Junction",
+      "title": "تقاطع شلوغ",
       "rows": 6,
       "columns": 6,
       "pairs": [
@@ -5555,7 +5555,7 @@
     },
     {
       "id": "season-2-11",
-      "title": "Long Detour",
+      "title": "راه فرعی طولانی",
       "rows": 6,
       "columns": 6,
       "pairs": [
@@ -5777,7 +5777,7 @@
     },
     {
       "id": "season-2-12",
-      "title": "Locked Steps",
+      "title": "قدم‌های قفل‌شده",
       "rows": 6,
       "columns": 6,
       "pairs": [
@@ -5999,7 +5999,7 @@
     },
     {
       "id": "season-2-13",
-      "title": "Winding Order",
+      "title": "نظم پیچاپیچ",
       "rows": 6,
       "columns": 6,
       "pairs": [
@@ -6221,7 +6221,7 @@
     },
     {
       "id": "season-2-14",
-      "title": "Threaded Maze",
+      "title": "هزارتوی نخ‌ها",
       "rows": 6,
       "columns": 6,
       "pairs": [
@@ -6443,7 +6443,7 @@
     },
     {
       "id": "season-2-15",
-      "title": "Expert Crossing",
+      "title": "تقاطع حرفه‌ای",
       "rows": 6,
       "columns": 6,
       "pairs": [
@@ -6665,7 +6665,7 @@
     },
     {
       "id": "season-2-16",
-      "title": "Master Circuit",
+      "title": "مدار استاد",
       "rows": 6,
       "columns": 6,
       "pairs": [
@@ -6887,7 +6887,7 @@
     },
     {
       "id": "season-2-17",
-      "title": "Tight Alliance",
+      "title": "پیوند تنگ",
       "rows": 6,
       "columns": 6,
       "pairs": [
@@ -7109,7 +7109,7 @@
     },
     {
       "id": "season-2-18",
-      "title": "Deep Weave",
+      "title": "بافت عمیق",
       "rows": 6,
       "columns": 6,
       "pairs": [
@@ -7331,7 +7331,7 @@
     },
     {
       "id": "season-2-19",
-      "title": "Final Tangle",
+      "title": "گره پایانی",
       "rows": 6,
       "columns": 6,
       "pairs": [
@@ -7553,7 +7553,7 @@
     },
     {
       "id": "season-2-20",
-      "title": "Summit Route",
+      "title": "راه قله",
       "rows": 6,
       "columns": 6,
       "pairs": [
@@ -7775,7 +7775,7 @@
     },
 {
    "id": "season-3-01",
-   "title": "Ordered Passage",
+   "title": "گذر منظم",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -7997,7 +7997,7 @@
   },
   {
    "id": "season-3-02",
-   "title": "Close Quarters",
+   "title": "فضای تنگ",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -8219,7 +8219,7 @@
   },
   {
    "id": "season-3-03",
-   "title": "Hidden Turn",
+   "title": "پیچ پنهان",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -8441,7 +8441,7 @@
   },
   {
    "id": "season-3-04",
-   "title": "Split Decision",
+   "title": "دوراهی",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -8663,7 +8663,7 @@
   },
   {
    "id": "season-3-05",
-   "title": "Woven Gates",
+   "title": "دروازه‌های بافته",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -8885,7 +8885,7 @@
   },
   {
    "id": "season-3-06",
-   "title": "Tight Crossing",
+   "title": "تقاطع تنگ",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -9107,7 +9107,7 @@
   },
   {
    "id": "season-3-07",
-   "title": "Quiet Detour",
+   "title": "راه فرعی آرام",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -9329,7 +9329,7 @@
   },
   {
    "id": "season-3-08",
-   "title": "Threaded Hall",
+   "title": "تالار نخ‌ها",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -9551,7 +9551,7 @@
   },
   {
    "id": "season-3-09",
-   "title": "False Opening",
+   "title": "راه گمراه‌کننده",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -9773,7 +9773,7 @@
   },
   {
    "id": "season-3-10",
-   "title": "Narrow Exchange",
+   "title": "تبادل باریک",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -9995,7 +9995,7 @@
   },
   {
    "id": "season-3-11",
-   "title": "Deep Current",
+   "title": "جریان عمیق",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -10217,7 +10217,7 @@
   },
   {
    "id": "season-3-12",
-   "title": "Turning Point",
+   "title": "نقطهٔ چرخش",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -10439,7 +10439,7 @@
   },
   {
    "id": "season-3-13",
-   "title": "Locked Corridor",
+   "title": "راهروی بسته",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -10661,7 +10661,7 @@
   },
   {
    "id": "season-3-14",
-   "title": "Braided Steps",
+   "title": "قدم‌های بافته",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -10883,7 +10883,7 @@
   },
   {
    "id": "season-3-15",
-   "title": "Expert Order",
+   "title": "نظم حرفه‌ای",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -11105,7 +11105,7 @@
   },
   {
    "id": "season-3-16",
-   "title": "Converging Trails",
+   "title": "راه‌های همگرا",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -11327,7 +11327,7 @@
   },
   {
    "id": "season-3-17",
-   "title": "Secret Channel",
+   "title": "آبراه مخفی",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -11549,7 +11549,7 @@
   },
   {
    "id": "season-3-18",
-   "title": "Twisted Causeway",
+   "title": "گذرگاه پیچیده",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -11771,7 +11771,7 @@
   },
   {
    "id": "season-3-19",
-   "title": "Final Passage",
+   "title": "گذر پایانی",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -11993,7 +11993,7 @@
   },
   {
    "id": "season-3-20",
-   "title": "Expert Summit",
+   "title": "قلهٔ حرفه‌ای",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -12215,7 +12215,7 @@
   },
 {
    "id": "season-4-01",
-   "title": "Master Entry",
+   "title": "ورودی استاد",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -12437,7 +12437,7 @@
   },
   {
    "id": "season-4-02",
-   "title": "Guarded Bend",
+   "title": "پیچ محافظت‌شده",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -12659,7 +12659,7 @@
   },
   {
    "id": "season-4-03",
-   "title": "Crossed Routes",
+   "title": "مسیرهای متقاطع",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -12881,7 +12881,7 @@
   },
   {
    "id": "season-4-04",
-   "title": "Fourfold Turn",
+   "title": "پیچ چهارگانه",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -13103,7 +13103,7 @@
   },
   {
    "id": "season-4-05",
-   "title": "Tangled Court",
+   "title": "حیاط پرگره",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -13325,7 +13325,7 @@
   },
   {
    "id": "season-4-06",
-   "title": "Sealed Channel",
+   "title": "آبراه بسته",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -13547,7 +13547,7 @@
   },
   {
    "id": "season-4-07",
-   "title": "Layered Crossing",
+   "title": "تقاطع چندلایه",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -13769,7 +13769,7 @@
   },
   {
    "id": "season-4-08",
-   "title": "Hidden Circuit",
+   "title": "مدار پنهان",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -13991,7 +13991,7 @@
   },
   {
    "id": "season-4-09",
-   "title": "Crowded Bend",
+   "title": "پیچ شلوغ",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -14213,7 +14213,7 @@
   },
   {
    "id": "season-4-10",
-   "title": "Master Detour",
+   "title": "راه فرعی استاد",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -14435,7 +14435,7 @@
   },
   {
    "id": "season-4-11",
-   "title": "Bound Passage",
+   "title": "گذر محدود",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -14657,7 +14657,7 @@
   },
   {
    "id": "season-4-12",
-   "title": "Interlocked Ways",
+   "title": "راه‌های درهم‌قفل",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -14879,7 +14879,7 @@
   },
   {
    "id": "season-4-13",
-   "title": "Narrow Circuit",
+   "title": "مدار باریک",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -15101,7 +15101,7 @@
   },
   {
    "id": "season-4-14",
-   "title": "Braided Order",
+   "title": "نظم بافته",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -15323,7 +15323,7 @@
   },
   {
    "id": "season-4-15",
-   "title": "Master Weave",
+   "title": "بافت استاد",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -15545,7 +15545,7 @@
   },
   {
    "id": "season-4-16",
-   "title": "Deep Junction",
+   "title": "تقاطع عمیق",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -15767,7 +15767,7 @@
   },
   {
    "id": "season-4-17",
-   "title": "Closed Crossing",
+   "title": "تقاطع بسته",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -15989,7 +15989,7 @@
   },
   {
    "id": "season-4-18",
-   "title": "Twisted Network",
+   "title": "شبکهٔ پیچیده",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -16211,7 +16211,7 @@
   },
   {
    "id": "season-4-19",
-   "title": "Final Circuit",
+   "title": "مدار پایانی",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -16433,7 +16433,7 @@
   },
   {
    "id": "season-4-20",
-   "title": "Master Summit",
+   "title": "قلهٔ استاد",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -16655,7 +16655,7 @@
   },
 {
    "id": "season-5-01",
-   "title": "Grand Entry",
+   "title": "ورودی بزرگ",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -16877,7 +16877,7 @@
   },
   {
    "id": "season-5-02",
-   "title": "Exacting Turn",
+   "title": "پیچ دشوار",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -17099,7 +17099,7 @@
   },
   {
    "id": "season-5-03",
-   "title": "Veiled Crossing",
+   "title": "تقاطع پوشیده",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -17321,7 +17321,7 @@
   },
   {
    "id": "season-5-04",
-   "title": "Tangled Divide",
+   "title": "جدایی پرگره",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -17543,7 +17543,7 @@
   },
   {
    "id": "season-5-05",
-   "title": "Grand Passage",
+   "title": "گذر بزرگ",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -17765,7 +17765,7 @@
   },
   {
    "id": "season-5-06",
-   "title": "Constrained Ways",
+   "title": "راه‌های محدود",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -17987,7 +17987,7 @@
   },
   {
    "id": "season-5-07",
-   "title": "Hidden Sequence",
+   "title": "ترتیب پنهان",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -18209,7 +18209,7 @@
   },
   {
    "id": "season-5-08",
-   "title": "Interwoven Hall",
+   "title": "تالار درهم‌تنیده",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -18431,7 +18431,7 @@
   },
   {
    "id": "season-5-09",
-   "title": "Deceptive Bend",
+   "title": "پیچ فریبنده",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -18653,7 +18653,7 @@
   },
   {
    "id": "season-5-10",
-   "title": "Grand Circuit",
+   "title": "مدار بزرگ",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -18875,7 +18875,7 @@
   },
   {
    "id": "season-5-11",
-   "title": "Locked Network",
+   "title": "شبکهٔ قفل‌شده",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -19097,7 +19097,7 @@
   },
   {
    "id": "season-5-12",
-   "title": "Layered Routes",
+   "title": "مسیرهای چندلایه",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -19319,7 +19319,7 @@
   },
   {
    "id": "season-5-13",
-   "title": "Narrow Alliance",
+   "title": "پیوند باریک",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -19541,7 +19541,7 @@
   },
   {
    "id": "season-5-14",
-   "title": "Braided Circuit",
+   "title": "مدار بافته",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -19763,7 +19763,7 @@
   },
   {
    "id": "season-5-15",
-   "title": "Grandmaster Weave",
+   "title": "بافت استاد بزرگ",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -19985,7 +19985,7 @@
   },
   {
    "id": "season-5-16",
-   "title": "Deep Sequence",
+   "title": "ترتیب عمیق",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -20207,7 +20207,7 @@
   },
   {
    "id": "season-5-17",
-   "title": "Sealed Junction",
+   "title": "تقاطع مسدود",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -20429,7 +20429,7 @@
   },
   {
    "id": "season-5-18",
-   "title": "Twisted Summit",
+   "title": "قلهٔ پیچیده",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -20651,7 +20651,7 @@
   },
   {
    "id": "season-5-19",
-   "title": "Final Network",
+   "title": "شبکهٔ پایانی",
    "rows": 6,
    "columns": 6,
    "pairs": [
@@ -20873,7 +20873,7 @@
   },
   {
    "id": "season-5-20",
-   "title": "Pathly Pinnacle",
+   "title": "اوج گره‌راه",
    "rows": 6,
    "columns": 6,
    "pairs": [

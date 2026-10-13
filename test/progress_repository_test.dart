@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pathly/game/level_repository.dart';
-import 'package:pathly/game/level_progression.dart';
-import 'package:pathly/game/puzzle_level.dart';
-import 'package:pathly/progress/progress_repository.dart';
+import 'package:gerehrah/game/level_repository.dart';
+import 'package:gerehrah/game/level_progression.dart';
+import 'package:gerehrah/game/puzzle_level.dart';
+import 'package:gerehrah/progress/progress_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 late List<PuzzleLevel> starterLevels;
@@ -26,7 +26,7 @@ void main() {
 
   test('handles invalid saved progress safely', () async {
     SharedPreferences.setMockInitialValues({
-      'pathly.player_progress.v1': '{invalid json',
+      'gerehrah.player_progress.v1': '{invalid json',
     });
 
     final progress = await SharedPreferencesProgressRepository().load();
@@ -34,9 +34,9 @@ void main() {
     expect(progress.completedLevels, isEmpty);
   });
 
-  test('loads existing Season 1 v1 saved data unchanged', () async {
+  test('loads existing فصل ۱ v۱ saved data unchanged', () async {
     SharedPreferences.setMockInitialValues({
-      'pathly.player_progress.v1':
+      'gerehrah.player_progress.v1':
           '{"completedLevels":{"crossroads-4":'
           '{"bestMoves":7,"bestTimeSeconds":65}}}',
     });
@@ -156,7 +156,7 @@ void main() {
     },
   );
 
-  test('Season 1 and Season 2 progress persist independently', () async {
+  test('فصل ۱ and فصل ۲ progress persist independently', () async {
     final repository = SharedPreferencesProgressRepository();
     for (final level in starterLevels.take(20)) {
       await repository.saveCompletedLevel(
@@ -186,7 +186,7 @@ void main() {
     expect(reopened.isLevelUnlocked(22), isFalse);
   });
 
-  test('Season 3 through Season 5 progress survives app restart', () async {
+  test('فصل ۳ through فصل ۵ progress survives app restart', () async {
     final repository = SharedPreferencesProgressRepository();
     for (final level in starterLevels.take(81)) {
       await repository.saveCompletedLevel(

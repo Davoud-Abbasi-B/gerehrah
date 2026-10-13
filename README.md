@@ -1,29 +1,41 @@
-# pathly
+# Gerehrah / گره‌راه
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-## Validate puzzle levels
-
-Run the development-only validation test before adding or changing levels:
+Persian RTL puzzle game built with Flutter + Flame for Cafe Bazaar.
+Android package: `com.damostudio.gerehrah`. Initial version: `1.0.0+1`.
+All 100 levels retain their original gameplay geometry and rules.
 
 ```sh
-flutter test test/validate_levels_test.dart --reporter expanded
+flutter pub get
+flutter run
+flutter analyze
+flutter test
+flutter build apk --debug
+flutter build apk --release
 ```
 
-It loads `assets/levels/levels.json`, checks every stored solution, solves each
-level up to two solutions, and prints one summary per level. Invalid or
-unsolvable levels fail the command; multiple solutions are reported as warnings.
+Firebase is disabled by default. Firebase credentials and signing secrets are not stored in Git.
+Create a new Firebase project and register Android app `com.damostudio.gerehrah`.
+Download its `google-services.json` to ignored `android/app/google-services.json`.
+To enable Firebase explicitly, set `enableFirebase=true` in your local `~/.gradle/gradle.properties`
+and run/build with `--dart-define=ENABLE_FIREBASE=true`. Both settings are required.
+Gradle rejects Firebase clients with another package. Analytics event names remain unchanged.
+Advertising ID collection stays disabled.
+
+Generate a new Gerehrah production keystore, keep it outside Git, and create ignored
+`android/key.properties` with `storeFile`, `storePassword`, `keyAlias` and `keyPassword`.
+Use an absolute `storeFile` path (relative paths resolve from `android/app/`).
+Without signing properties, release APKs are unsigned and cannot be published.
+Back up the new key securely and use it for future updates.
+Android launcher icons and the home header use `assets/gerehrah_icon.png`.
+Regenerate legacy, round, and adaptive foreground resources after replacing it:
+`flutter test tool/generate_android_launcher_icons_test.dart`.
+The adaptive foreground keeps the full square image inside the circular safe zone
+on the matching navy background; the original image is never overwritten.
+
+Persian UI typography uses Vazirmatn v33.003 (Regular, Medium, SemiBold, Bold),
+from https://github.com/rastikerdar/vazirmatn under the SIL Open Font License 1.1.
+The bundled license is `assets/fonts/OFL.txt`; Flutter includes it in its license
+registry. The central theme applies the font to all Material screens and labels.
+
+The legacy local progress key is intentionally preserved for existing installations.
+The independent Android package keeps app storage separate. Tutorial persistence is unchanged.

@@ -1,3 +1,5 @@
+import '../localization/persian.dart';
+
 import 'dart:async';
 
 import 'package:flame/game.dart';
@@ -8,11 +10,11 @@ import '../home/season_definition.dart';
 import '../progress/progress_repository.dart';
 import 'level_progression.dart';
 import 'path_board.dart';
-import 'pathly_game.dart';
+import 'gerehrah_game.dart';
 import 'puzzle_level.dart';
 
-class PathlyScreen extends StatefulWidget {
-  const PathlyScreen({
+class GerehrahScreen extends StatefulWidget {
+  const GerehrahScreen({
     super.key,
     this.levels,
     this.progressRepository,
@@ -28,13 +30,13 @@ class PathlyScreen extends StatefulWidget {
   final AppAnalyticsService? analyticsService;
 
   @override
-  State<PathlyScreen> createState() => _PathlyScreenState();
+  State<GerehrahScreen> createState() => _GerehrahScreenState();
 }
 
-class _PathlyScreenState extends State<PathlyScreen>
+class _GerehrahScreenState extends State<GerehrahScreen>
     with SingleTickerProviderStateMixin {
   late final LevelProgression _progression;
-  late PathlyGame _game;
+  late GerehrahGame _game;
   late final AppAnalyticsService _analyticsService;
   bool _stateRefreshScheduled = false;
   bool _completionHandledForCurrentSolve = false;
@@ -75,7 +77,7 @@ class _PathlyScreenState extends State<PathlyScreen>
     _scheduleStateRefresh();
   }
 
-  PathlyGame _createGame() => PathlyGame(
+  GerehrahGame _createGame() => GerehrahGame(
     board: _progression.board,
     onStateChanged: _onGameStateChanged,
     onInvalidMove: _onInvalidMove,
@@ -298,7 +300,7 @@ class _GameTopBar extends StatelessWidget {
           IconButton.filledTonal(
             key: const Key('back-to-levels'),
             onPressed: onBack,
-            tooltip: 'Back to levels',
+            tooltip: 'بازگشت به مرحله‌ها',
             constraints: const BoxConstraints(minWidth: 44, minHeight: 44),
             icon: const Icon(Icons.arrow_back_rounded, size: 20),
           ),
@@ -310,7 +312,7 @@ class _GameTopBar extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
             ),
             child: Text(
-              'LEVEL $levelNumber',
+              'مرحله ${persianDigits(levelNumber)}',
               style: const TextStyle(
                 color: Color(0xFF76A9FF),
                 fontSize: 10,
@@ -322,7 +324,7 @@ class _GameTopBar extends StatelessWidget {
           const SizedBox(width: 10),
           Expanded(
             child: Text(
-              'Level $levelNumber • $title',
+              'مرحله ${persianDigits(levelNumber)} • $title',
               key: const Key('level-title'),
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
@@ -391,7 +393,7 @@ class _LevelStrip extends StatelessWidget {
                 ),
               ),
             ),
-            child: Text('${index + 1}${completed ? ' ✓' : ''}'),
+            child: Text('${persianDigits(index + 1)}${completed ? ' ✓' : ''}'),
           );
         },
       ),
@@ -425,8 +427,8 @@ class _StatusPanel extends StatelessWidget {
                 Expanded(
                   child: _StatusItem(
                     icon: Icons.gesture_rounded,
-                    label: 'Moves',
-                    value: '$moves',
+                    label: 'حرکت',
+                    value: persianDigits(moves),
                     key: const Key('move-count'),
                   ),
                 ),
@@ -434,8 +436,8 @@ class _StatusPanel extends StatelessWidget {
                 Expanded(
                   child: _StatusItem(
                     icon: Icons.schedule_rounded,
-                    label: 'Time',
-                    value: time,
+                    label: 'زمان',
+                    value: persianDigits(time),
                     key: const Key('level-time'),
                   ),
                 ),
@@ -449,7 +451,7 @@ class _StatusPanel extends StatelessWidget {
                 : Padding(
                     padding: const EdgeInsets.only(top: 5),
                     child: Text(
-                      'Best Moves: $bestMoves  •  Best Time: $bestTime',
+                      'کمترین حرکت: ${persianDigits(bestMoves!)}  •  بهترین زمان: $bestTime',
                       key: const Key('best-result'),
                       style: const TextStyle(
                         fontSize: 11,
@@ -527,7 +529,7 @@ class _SuccessBadge extends StatelessWidget {
           Icon(Icons.check_rounded, color: Color(0xFF6EE7B7), size: 21),
           SizedBox(width: 8),
           Text(
-            'Connected!',
+            'مرحله کامل شد!',
             style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15),
           ),
         ],
@@ -574,8 +576,8 @@ class _GameControls extends StatelessWidget {
               shape: shape,
               minimumSize: const Size(0, 44),
             ),
-            icon: const Icon(Icons.chevron_left_rounded, size: 19),
-            label: const Text('Previous'),
+            icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 19),
+            label: const Text('قبلی'),
           ),
           OutlinedButton.icon(
             key: const Key('undo'),
@@ -585,7 +587,7 @@ class _GameControls extends StatelessWidget {
               minimumSize: const Size(0, 44),
             ),
             icon: const Icon(Icons.undo_rounded, size: 18),
-            label: const Text('Undo'),
+            label: const Text('بازگشت'),
           ),
           OutlinedButton.icon(
             key: const Key('reset'),
@@ -595,7 +597,7 @@ class _GameControls extends StatelessWidget {
               minimumSize: const Size(0, 44),
             ),
             icon: const Icon(Icons.refresh_rounded, size: 18),
-            label: const Text('Reset'),
+            label: const Text('شروع دوباره'),
           ),
           FilledButton.icon(
             key: const Key('next-level'),
@@ -605,8 +607,8 @@ class _GameControls extends StatelessWidget {
               minimumSize: const Size(0, 44),
             ),
             iconAlignment: IconAlignment.end,
-            icon: const Icon(Icons.chevron_right_rounded, size: 19),
-            label: const Text('Next'),
+            icon: const Icon(Icons.arrow_forward_ios_rounded, size: 19),
+            label: const Text('بعدی'),
           ),
         ],
       ),
@@ -617,5 +619,5 @@ class _GameControls extends StatelessWidget {
 String _formatSeconds(int totalSeconds) {
   final minutes = (totalSeconds ~/ 60).toString().padLeft(2, '0');
   final seconds = (totalSeconds % 60).toString().padLeft(2, '0');
-  return '$minutes:$seconds';
+  return persianDigits('$minutes:$seconds');
 }

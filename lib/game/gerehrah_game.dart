@@ -7,8 +7,8 @@ import 'grid_cell.dart';
 import 'path_board.dart';
 import 'puzzle_level.dart';
 
-class PathlyGame extends FlameGame with DragCallbacks {
-  PathlyGame({
+class GerehrahGame extends FlameGame with DragCallbacks {
+  GerehrahGame({
     required this.board,
     required this.onStateChanged,
     required this.onInvalidMove,

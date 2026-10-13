@@ -1,10 +1,12 @@
+import '../localization/persian.dart';
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
 
 import '../analytics/app_analytics_service.dart';
 import '../game/level_progression.dart';
-import '../game/pathly_screen.dart';
+import '../game/gerehrah_screen.dart';
 import '../game/puzzle_level.dart';
 import '../onboarding/how_to_play.dart';
 import '../progress/progress_repository.dart';
@@ -48,7 +50,7 @@ class _LevelSelectScreenState extends State<LevelSelectScreen> {
       repository:
           widget.progressRepository ?? SharedPreferencesProgressRepository(),
     );
-    _seasons = buildPathlySeasons(widget.levels);
+    _seasons = buildGerehrahSeasons(widget.levels);
     _shareService = widget.shareService ?? const PlatformAppShareService();
     _analyticsService =
         widget.analyticsService ?? FirebaseAppAnalyticsService();
@@ -75,7 +77,7 @@ class _LevelSelectScreenState extends State<LevelSelectScreen> {
     if (!_progression.goToLevel(index) || !mounted) return;
     await Navigator.of(context).push<void>(
       MaterialPageRoute(
-        builder: (_) => PathlyScreen(
+        builder: (_) => GerehrahScreen(
           progression: _progression,
           analyticsService: _analyticsService,
         ),
@@ -121,7 +123,7 @@ class _LevelSelectScreenState extends State<LevelSelectScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           key: Key('share-error-snackbar'),
-          content: Text('Unable to share Pathly right now.'),
+          content: Text('فعلاً امکان اشتراک‌گذاری بازی نیست.'),
         ),
       );
     }
@@ -168,7 +170,7 @@ class _LevelSelectScreenState extends State<LevelSelectScreen> {
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         const Text(
-                                          'Select a Level',
+                                          'انتخاب مرحله',
                                           key: Key('select-level-heading'),
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
@@ -193,8 +195,8 @@ class _LevelSelectScreenState extends State<LevelSelectScreen> {
                                         ),
                                         const SizedBox(height: 8),
                                         Text(
-                                          'Progress: $completedCount / '
-                                          '$levelsPerSeason',
+                                          'پیشرفت: ${persianDigits(completedCount)} از '
+                                          '${persianDigits(levelsPerSeason)}',
                                           key: const Key('season-progress'),
                                           style: const TextStyle(
                                             color: Color(0xFFB3C0D1),
@@ -232,11 +234,12 @@ class _LevelSelectScreenState extends State<LevelSelectScreen> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Semantics(
-                                                label: 'Share Pathly',
+                                                label: 'اشتراک‌گذاری گره‌راه',
                                                 button: true,
                                                 excludeSemantics: true,
                                                 child: Tooltip(
-                                                  message: 'Share Pathly',
+                                                  message:
+                                                      'اشتراک‌گذاری گره‌راه',
                                                   child: OutlinedButton.icon(
                                                     key: const Key('share-app'),
                                                     onPressed: () => _shareApp(
@@ -267,7 +270,7 @@ class _LevelSelectScreenState extends State<LevelSelectScreen> {
                                                       size: 18,
                                                     ),
                                                     label: const Text(
-                                                      'Share App',
+                                                      'اشتراک‌گذاری',
                                                     ),
                                                   ),
                                                 ),
@@ -276,7 +279,7 @@ class _LevelSelectScreenState extends State<LevelSelectScreen> {
                                               IconButton.outlined(
                                                 key: const Key('how-to-play'),
                                                 onPressed: _showTutorial,
-                                                tooltip: 'How to Play',
+                                                tooltip: 'روش بازی',
                                                 style: IconButton.styleFrom(
                                                   minimumSize: const Size(
                                                     44,
@@ -305,7 +308,7 @@ class _LevelSelectScreenState extends State<LevelSelectScreen> {
                                           ),
                                         ),
                                         Semantics(
-                                          label: 'Privacy Policy',
+                                          label: 'حریم خصوصی',
                                           button: true,
                                           excludeSemantics: true,
                                           child: TextButton(
@@ -325,7 +328,7 @@ class _LevelSelectScreenState extends State<LevelSelectScreen> {
                                                 0xFF9FB0C6,
                                               ),
                                             ),
-                                            child: const Text('Privacy Policy'),
+                                            child: const Text('حریم خصوصی'),
                                           ),
                                         ),
                                       ],
@@ -387,12 +390,8 @@ class _LevelSelectHeader extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Pathly',
-              style: TextStyle(
-                fontSize: 27,
-                fontWeight: FontWeight.w800,
-                letterSpacing: -0.7,
-              ),
+              'گره‌راه',
+              style: TextStyle(fontSize: 27, fontWeight: FontWeight.w800),
             ),
           ],
         ),
@@ -406,15 +405,16 @@ class _LogoMark extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 38,
-      height: 38,
-      decoration: BoxDecoration(
-        color: const Color(0xFF172A45),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0xFF315783)),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10),
+      child: Image.asset(
+        'assets/gerehrah_icon.png',
+        key: const Key('gerehrah-logo'),
+        width: 42,
+        height: 42,
+        fit: BoxFit.contain,
+        excludeFromSemantics: true,
       ),
-      child: const Icon(Icons.route_rounded, color: Color(0xFF76A9FF)),
     );
   }
 }
@@ -440,14 +440,14 @@ class _SeasonSelector extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Semantics(
-          label: 'Previous season',
+          label: 'فصل قبلی',
           button: true,
           enabled: canGoPrevious,
           child: IconButton(
             key: const Key('previous-season'),
-            tooltip: 'Previous season',
+            tooltip: 'فصل قبلی',
             onPressed: canGoPrevious ? onPrevious : null,
-            icon: const Icon(Icons.chevron_left_rounded),
+            icon: const Icon(Icons.arrow_back_ios_new_rounded),
           ),
         ),
         SizedBox(
@@ -460,14 +460,14 @@ class _SeasonSelector extends StatelessWidget {
           ),
         ),
         Semantics(
-          label: 'Next season',
+          label: 'فصل بعدی',
           button: true,
           enabled: canGoNext,
           child: IconButton(
             key: const Key('next-season'),
-            tooltip: 'Next season',
+            tooltip: 'فصل بعدی',
             onPressed: canGoNext ? onNext : null,
-            icon: const Icon(Icons.chevron_right_rounded),
+            icon: const Icon(Icons.arrow_forward_ios_rounded),
           ),
         ),
       ],
@@ -585,12 +585,12 @@ class _LevelGridCell extends StatelessWidget {
         ? const Color(0xFF9ABCF5)
         : const Color(0xFF64748B);
     final semanticState = completed
-        ? 'completed'
+        ? 'کامل‌شده'
         : highlighted
-        ? 'current available'
+        ? 'مرحلهٔ فعلی'
         : unlocked
-        ? 'unlocked'
-        : 'locked';
+        ? 'باز'
+        : 'قفل';
     final fill = highlighted
         ? const Color(0xFF18304F)
         : unlocked
@@ -599,8 +599,9 @@ class _LevelGridCell extends StatelessWidget {
 
     return Semantics(
       key: cellKey,
-      label: 'Season $seasonNumber, level $levelNumber, $semanticState',
-      hint: unlocked ? 'Double tap to play. Long press for details.' : null,
+      label:
+          'فصل ${persianDigits(seasonNumber)}، مرحله ${persianDigits(levelNumber)}، $semanticState',
+      hint: unlocked ? 'برای بازی دو بار بزن. برای جزئیات نگه دار.' : null,
       button: true,
       enabled: unlocked,
       excludeSemantics: true,
@@ -623,7 +624,7 @@ class _LevelGridCell extends StatelessWidget {
             children: [
               if (unlocked)
                 Text(
-                  '$levelNumber',
+                  persianDigits(levelNumber),
                   key: Key('level-number-$levelNumber'),
                   style: TextStyle(
                     color: accent,
@@ -639,9 +640,9 @@ class _LevelGridCell extends StatelessWidget {
                   size: 20,
                 ),
               if (completed)
-                Positioned(
+                PositionedDirectional(
                   top: 5,
-                  right: 5,
+                  end: 5,
                   child: Icon(
                     Icons.check_circle_rounded,
                     key: Key('level-completed-$levelNumber'),
@@ -679,24 +680,24 @@ class _LevelDetailsSheet extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Level $levelNumber · ${level.title}',
+              'مرحله ${persianDigits(levelNumber)} · ${level.title}',
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
             ),
             const SizedBox(height: 12),
             Text(
-              'Board: ${level.rows}x${level.columns}',
+              'صفحه: ${persianDigits(level.rows)}×${persianDigits(level.columns)}',
               key: const Key('level-detail-board'),
               style: const TextStyle(color: Color(0xFFB3C0D1)),
             ),
             const SizedBox(height: 6),
             Text(
-              'Best moves: ${result?.bestMoves ?? '—'}',
+              'کمترین حرکت: ${persianDigits(result?.bestMoves ?? '—')}',
               key: const Key('level-detail-moves'),
               style: const TextStyle(color: Color(0xFFB3C0D1)),
             ),
             const SizedBox(height: 6),
             Text(
-              'Best time: '
+              'بهترین زمان: '
               '${result == null ? '—' : _formatSeconds(result!.bestTimeSeconds)}',
               key: const Key('level-detail-time'),
               style: const TextStyle(color: Color(0xFFB3C0D1)),
@@ -711,5 +712,5 @@ class _LevelDetailsSheet extends StatelessWidget {
 String _formatSeconds(int totalSeconds) {
   final minutes = (totalSeconds ~/ 60).toString().padLeft(2, '0');
   final seconds = (totalSeconds % 60).toString().padLeft(2, '0');
-  return '$minutes:$seconds';
+  return persianDigits('$minutes:$seconds');
 }

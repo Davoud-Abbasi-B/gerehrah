@@ -1,9 +1,10 @@
+import 'package:gerehrah/localization/persian.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pathly/game/level_repository.dart';
-import 'package:pathly/game/puzzle_level.dart';
-import 'package:pathly/main.dart';
-import 'package:pathly/onboarding/how_to_play.dart';
+import 'package:gerehrah/game/level_repository.dart';
+import 'package:gerehrah/game/puzzle_level.dart';
+import 'package:gerehrah/main.dart';
+import 'package:gerehrah/onboarding/how_to_play.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -34,12 +35,12 @@ void main() {
       });
 
       await tester.pumpWidget(
-        PathlyApp(levelRepository: _LoadedLevelRepository(levels)),
+        GerehrahApp(levelRepository: _LoadedLevelRepository(levels)),
       );
       await tester.pump();
       await tester.pump();
       expect(tester.takeException(), isNull);
-      final pathlyRect = tester.getRect(find.text('Pathly'));
+      final gerehrahRect = tester.getRect(find.text('گره‌راه'));
       if (viewport.value == const Size(390, 844)) {
         final selectRect = tester.getRect(
           find.byKey(const Key('select-level-heading')),
@@ -47,12 +48,14 @@ void main() {
         final firstGridCellRect = tester.getRect(
           find.byKey(const Key('season-1-slot-1')),
         );
-        expect(pathlyRect.top, closeTo(40, 0.5));
-        expect(pathlyRect.top, lessThan(viewport.value.height / 4));
-        expect(selectRect.top, closeTo(203.7, 0.5));
-        expect(selectRect.top, greaterThan(pathlyRect.bottom + 100));
-        expect(firstGridCellRect.top, closeTo(339.7, 0.5));
-        expect(firstGridCellRect.top, greaterThan(viewport.value.height * 0.4));
+        final logoRect = tester.getRect(find.byKey(const Key('gerehrah-logo')));
+        expect(logoRect.top, closeTo(40, 0.5));
+        expect(gerehrahRect.center.dy, closeTo(logoRect.center.dy, 0.5));
+        expect(gerehrahRect.top, lessThan(viewport.value.height / 4));
+        expect(selectRect.top, inInclusiveRange(190, 230));
+        expect(selectRect.top, greaterThan(gerehrahRect.bottom + 100));
+        expect(firstGridCellRect.top, inInclusiveRange(330, 370));
+        expect(firstGridCellRect.top, greaterThan(viewport.value.height * 0.38));
       }
       expect(find.byKey(const Key('season-1-slot-1')), findsOneWidget);
       expect(find.byKey(const Key('season-1-slot-20')), findsOneWidget);
@@ -96,7 +99,7 @@ void main() {
         );
         await tester.tap(find.byKey(const Key('next-season')));
         await tester.pump();
-        expect(find.text('Season $season'), findsOneWidget);
+        expect(find.text('فصل ${persianDigits(season)}'), findsOneWidget);
         await tester.scrollUntilVisible(
           find.byKey(Key('season-$season-slot-20')),
           120,
@@ -113,7 +116,7 @@ void main() {
         );
         await tester.tap(find.byKey(const Key('previous-season')));
         await tester.pump();
-        expect(find.text('Season $season'), findsOneWidget);
+        expect(find.text('فصل ${persianDigits(season)}'), findsOneWidget);
       }
       await tester.scrollUntilVisible(
         find.byKey(const Key('season-1-slot-1')),

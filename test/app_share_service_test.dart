@@ -1,17 +1,17 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pathly/share/app_share_service.dart';
+import 'package:gerehrah/share/app_share_service.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  const channel = MethodChannel(pathlyShareChannelName);
+  const channel = MethodChannel(gerehrahShareChannelName);
   const expectedShareMessage =
-      'Try Pathly — a relaxing path-connecting puzzle game!\n\n'
-      'https://play.google.com/store/apps/details?id=com.damostudio.pathly';
+      'گره‌راه رو امتحان کن؛ نقطه‌های هم‌رنگ رو وصل کن و همهٔ صفحه رو پر کن!\n\n'
+      'https://cafebazaar.ir/app/com.damostudio.gerehrah';
 
   test('share channel uses the publication application identifier', () {
-    expect(pathlyShareChannelName, 'com.damostudio.pathly/share');
+    expect(gerehrahShareChannelName, 'com.damostudio.gerehrah/share');
   });
 
   tearDown(() {
@@ -31,11 +31,11 @@ void main() {
 
       await const PlatformAppShareService().shareApp();
 
-      expect(receivedCall?.method, pathlyShareMethodName);
+      expect(receivedCall?.method, gerehrahShareMethodName);
       expect(receivedCall?.arguments, const <String, Object>{
         'text': expectedShareMessage,
       });
-      expect(pathlyShareMessage, expectedShareMessage);
+      expect(gerehrahShareMessage, expectedShareMessage);
     },
   );
 

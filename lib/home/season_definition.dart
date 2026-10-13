@@ -1,3 +1,5 @@
+import '../localization/persian.dart';
+
 import '../game/puzzle_level.dart';
 
 const levelsPerSeason = 20;
@@ -42,7 +44,7 @@ class SeasonDefinition {
     return SeasonDefinition(
       number: number,
       lockedMessage: number > 1
-          ? 'Complete Season ${number - 1} to unlock'
+          ? 'برای باز شدن، فصل ${persianDigits(number - 1)} را کامل کن'
           : null,
       slots: List.unmodifiable([
         for (var index = 0; index < levels.length; index++)
@@ -73,11 +75,11 @@ class SeasonDefinition {
   final List<SeasonLevelSlot> slots;
   final String? lockedMessage;
 
-  String get title => 'Season $number';
+  String get title => 'فصل ${persianDigits(number)}';
   bool get hasPlayableLevels => slots.any((slot) => slot.isPlayable);
 }
 
-List<SeasonDefinition> buildPathlySeasons(List<PuzzleLevel> catalogLevels) {
+List<SeasonDefinition> buildGerehrahSeasons(List<PuzzleLevel> catalogLevels) {
   if (catalogLevels.isEmpty || catalogLevels.length % levelsPerSeason != 0) {
     throw ArgumentError.value(
       catalogLevels.length,
@@ -98,7 +100,8 @@ List<SeasonDefinition> buildPathlySeasons(List<PuzzleLevel> catalogLevels) {
       ),
     SeasonDefinition.placeholder(
       number: playableSeasonCount + 1,
-      lockedMessage: 'Complete Season $playableSeasonCount to unlock',
+      lockedMessage:
+          'برای باز شدن، فصل ${persianDigits(playableSeasonCount)} را کامل کن',
     ),
   ];
   return List.unmodifiable(seasons);

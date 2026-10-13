@@ -40,7 +40,7 @@ abstract interface class ProgressRepository {
 }
 
 class SharedPreferencesProgressRepository implements ProgressRepository {
-  static const _storageKey = 'pathly.player_progress.v1';
+  static const _storageKey = 'gerehrah.player_progress.v1';
 
   @override
   Future<PlayerProgress> load() async {

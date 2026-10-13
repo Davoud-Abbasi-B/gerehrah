@@ -1,6 +1,7 @@
+import 'package:gerehrah/localization/persian.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pathly/game/level_quality_validator.dart';
-import 'package:pathly/game/level_repository.dart';
+import 'package:gerehrah/game/level_quality_validator.dart';
+import 'package:gerehrah/game/level_repository.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -59,7 +60,7 @@ void main() {
           reports.length;
       // ignore: avoid_print
       print(
-        'Season $season summary | $uniqueCount unique | '
+        'فصل ${persianDigits(season)} summary | $uniqueCount unique | '
         '${reports.length - uniqueCount} multiple | slowest '
         '${slowest.level.id} ${slowest.solveResult.nodesVisited} nodes | '
         'average ${average.toStringAsFixed(1)} nodes',

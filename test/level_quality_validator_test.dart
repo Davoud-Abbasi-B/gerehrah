@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pathly/game/grid_cell.dart';
-import 'package:pathly/game/level_quality_validator.dart';
-import 'package:pathly/game/puzzle_level.dart';
+import 'package:gerehrah/game/grid_cell.dart';
+import 'package:gerehrah/game/level_quality_validator.dart';
+import 'package:gerehrah/game/puzzle_level.dart';
 
 void main() {
   const validator = LevelQualityValidator();

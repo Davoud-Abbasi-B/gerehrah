@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
-import 'package:pathly/game/grid_cell.dart';
-import 'package:pathly/game/puzzle_level.dart';
-import 'package:pathly/game/puzzle_solution_validator.dart';
-import 'package:pathly/game/puzzle_solver.dart';
+import 'package:gerehrah/game/grid_cell.dart';
+import 'package:gerehrah/game/puzzle_level.dart';
+import 'package:gerehrah/game/puzzle_solution_validator.dart';
+import 'package:gerehrah/game/puzzle_solver.dart';
 
 const _colors = PathColor.values;
 const _uniqueTargets = {3: 5, 4: 6, 5: 8};
@@ -77,7 +77,7 @@ const _titles = {
     'Sealed Junction',
     'Twisted Summit',
     'Final Network',
-    'Pathly Pinnacle',
+    'Gerehrah Pinnacle',
   ],
 };
 

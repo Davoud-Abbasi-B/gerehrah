@@ -33,6 +33,14 @@ migrate_working_dir/
 /build/
 /coverage/
 
+# Private service configuration and signing material
+**/google-services.json
+**/GoogleService-Info.plist
+**/key.properties
+**/*.jks
+**/*.keystore
+lib/firebase_options.dart
+
 # Symbolication related
 app.*.symbols
 

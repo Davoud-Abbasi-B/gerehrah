@@ -1,10 +1,11 @@
+import 'package:gerehrah/localization/persian.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pathly/game/grid_cell.dart';
-import 'package:pathly/game/level_repository.dart';
-import 'package:pathly/game/level_progression.dart';
-import 'package:pathly/game/path_board.dart';
-import 'package:pathly/game/puzzle_level.dart';
-import 'package:pathly/progress/progress_repository.dart';
+import 'package:gerehrah/game/grid_cell.dart';
+import 'package:gerehrah/game/level_repository.dart';
+import 'package:gerehrah/game/level_progression.dart';
+import 'package:gerehrah/game/path_board.dart';
+import 'package:gerehrah/game/puzzle_level.dart';
+import 'package:gerehrah/progress/progress_repository.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -62,7 +63,7 @@ void main() {
     expect(progression.goNext(), isFalse);
   });
 
-  test('completing Season 1 unlocks only Season 2 level 1', () async {
+  test('completing فصل ۱ unlocks only فصل ۲ level ۱', () async {
     final progression = LevelProgression(starterLevels);
 
     for (var index = 0; index < 20; index++) {
@@ -83,7 +84,7 @@ void main() {
   });
 
   test(
-    'Season 2 stays locked unless every Season 1 level is complete',
+    'فصل ۲ stays locked unless every فصل ۱ level is complete',
     () async {
       final progression = LevelProgression(starterLevels);
 
@@ -100,7 +101,7 @@ void main() {
 
   for (final season in [3, 4, 5]) {
     test(
-      'Season $season requires every Season ${season - 1} completion',
+      'فصل ${persianDigits(season)} requires every فصل ${persianDigits(season - 1)} completion',
       () async {
         final seasonStart = (season - 1) * 20;
         final completed = <String, LevelBestResult>{

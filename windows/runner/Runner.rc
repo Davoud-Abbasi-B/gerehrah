@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.pathlygame" "\0"
-            VALUE "FileDescription", "pathly" "\0"
+            VALUE "CompanyName", "com.damostudio" "\0"
+            VALUE "FileDescription", "gerehrah" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "pathly" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2026 com.pathlygame. All rights reserved." "\0"
-            VALUE "OriginalFilename", "pathly.exe" "\0"
-            VALUE "ProductName", "pathly" "\0"
+            VALUE "InternalName", "gerehrah" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2026 com.damostudio. All rights reserved." "\0"
+            VALUE "OriginalFilename", "gerehrah.exe" "\0"
+            VALUE "ProductName", "gerehrah" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

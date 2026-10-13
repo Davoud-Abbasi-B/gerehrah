@@ -1,11 +1,13 @@
 {
-    "name": "pathly",
-    "short_name": "pathly",
+    "name": "گره‌راه",
+    "short_name": "گره‌راه",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "گره‌راه؛ بازی فکری برای وصل کردن نقطه‌های هم‌رنگ و پر کردن صفحه",
+    "lang": "fa",
+    "dir": "rtl",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

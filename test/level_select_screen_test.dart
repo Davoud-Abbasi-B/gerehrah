@@ -1,13 +1,14 @@
+import 'package:gerehrah/localization/persian.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pathly/analytics/app_analytics_service.dart';
-import 'package:pathly/game/level_repository.dart';
-import 'package:pathly/game/path_board.dart';
-import 'package:pathly/game/puzzle_level.dart';
-import 'package:pathly/home/level_select_screen.dart';
-import 'package:pathly/onboarding/how_to_play.dart';
-import 'package:pathly/progress/progress_repository.dart';
-import 'package:pathly/share/app_share_service.dart';
+import 'package:gerehrah/analytics/app_analytics_service.dart';
+import 'package:gerehrah/game/level_repository.dart';
+import 'package:gerehrah/game/path_board.dart';
+import 'package:gerehrah/game/puzzle_level.dart';
+import 'package:gerehrah/home/level_select_screen.dart';
+import 'package:gerehrah/onboarding/how_to_play.dart';
+import 'package:gerehrah/progress/progress_repository.dart';
+import 'package:gerehrah/share/app_share_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -33,9 +34,12 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.byKey(const Key('how-to-play-sheet')), findsOneWidget);
-    expect(find.text('Connect matching colors'), findsOneWidget);
-    expect(find.text('Fill the entire board'), findsOneWidget);
-    expect(find.text("Paths can't cross or overlap"), findsOneWidget);
+    expect(find.text('نقطه‌های هم‌رنگ را به هم وصل کن'), findsOneWidget);
+    expect(find.text('همهٔ خانه‌های صفحه را پر کن'), findsOneWidget);
+    expect(
+      find.text('مسیرها نباید همدیگر را قطع کنند یا روی هم بیفتند'),
+      findsOneWidget,
+    );
     expect(analytics.tutorialViewCalls, 1);
 
     await tester.tap(find.byKey(const Key('tutorial-got-it')));
@@ -77,14 +81,14 @@ void main() {
     expect(analytics.tutorialCompleteCalls, 1);
   });
 
-  testWidgets('Season 1 starts with a compact ordered 5 by 4 grid', (
+  testWidgets('فصل ۱ starts with a compact ordered ۵ by ۴ grid', (
     tester,
   ) async {
     await _pumpScreen(tester, levels);
 
-    expect(find.text('Select a Level'), findsOneWidget);
-    expect(find.text('Season 1'), findsOneWidget);
-    expect(find.text('Progress: 0 / 20'), findsOneWidget);
+    expect(find.text('انتخاب مرحله'), findsOneWidget);
+    expect(find.text('فصل ۱'), findsOneWidget);
+    expect(find.text('پیشرفت: ۰ از ۲۰'), findsOneWidget);
     expect(find.byKey(const Key('season-1-grid')), findsOneWidget);
     for (var number = 1; number <= 20; number++) {
       expect(find.byKey(Key('season-1-slot-$number')), findsOneWidget);
@@ -97,13 +101,13 @@ void main() {
     expect(find.byKey(const Key('share-app')), findsOneWidget);
     expect(find.byIcon(Icons.share_rounded), findsOneWidget);
 
-    final pathlyTop = tester.getTopLeft(find.text('Pathly')).dy;
+    final gerehrahTop = tester.getTopLeft(find.text('گره‌راه')).dy;
     final selectHeading = find.byKey(const Key('select-level-heading'));
     final selectTop = tester.getTopLeft(selectHeading).dy;
-    final seasonTop = tester.getTopLeft(find.text('Season 1')).dy;
-    expect(pathlyTop, lessThan(selectTop));
+    final seasonTop = tester.getTopLeft(find.text('فصل ۱')).dy;
+    expect(gerehrahTop, lessThan(selectTop));
     expect(selectTop, lessThan(seasonTop));
-    expect(pathlyTop, inInclusiveRange(32, 48));
+    expect(gerehrahTop, inInclusiveRange(32, 48));
     expect(
       tester.getCenter(selectHeading).dx,
       closeTo(tester.getSize(find.byType(Scaffold)).width / 2, 0.5),
@@ -132,8 +136,8 @@ void main() {
       for (var number = 1; number <= 20; number++)
         tester.getTopLeft(find.byKey(Key('season-1-slot-$number'))).dy,
     }, hasLength(4));
-    expect(_iconButton(tester, 'previous-season').tooltip, 'Previous season');
-    expect(_iconButton(tester, 'next-season').tooltip, 'Next season');
+    expect(_iconButton(tester, 'previous-season').tooltip, 'فصل قبلی');
+    expect(_iconButton(tester, 'next-season').tooltip, 'فصل بعدی');
 
     final highlight = tester.widget<Material>(
       find.byKey(const Key('level-highlight-1')),
@@ -164,9 +168,9 @@ void main() {
     await tester.tap(find.byKey(const Key('next-season')));
     await tester.pump();
 
-    expect(find.text('Season 2'), findsOneWidget);
-    expect(find.text('Progress: 0 / 20'), findsOneWidget);
-    expect(find.text('Complete Season 1 to unlock'), findsOneWidget);
+    expect(find.text('فصل ۲'), findsOneWidget);
+    expect(find.text('پیشرفت: ۰ از ۲۰'), findsOneWidget);
+    expect(find.text('برای باز شدن، فصل ۱ را کامل کن'), findsOneWidget);
     for (var number = 1; number <= 20; number++) {
       expect(find.byKey(Key('season-2-slot-$number')), findsOneWidget);
     }
@@ -183,9 +187,9 @@ void main() {
     for (var season = 3; season <= 5; season++) {
       await tester.tap(find.byKey(const Key('next-season')));
       await tester.pump();
-      expect(find.text('Season $season'), findsOneWidget);
+      expect(find.text('فصل ${persianDigits(season)}'), findsOneWidget);
       expect(
-        find.text('Complete Season ${season - 1} to unlock'),
+        find.text('برای باز شدن، فصل ${persianDigits(season - 1)} را کامل کن'),
         findsOneWidget,
       );
       expect(find.byIcon(Icons.lock_rounded), findsNWidgets(20));
@@ -195,8 +199,8 @@ void main() {
 
     await tester.tap(find.byKey(const Key('next-season')));
     await tester.pump();
-    expect(find.text('Season 6'), findsOneWidget);
-    expect(find.text('Complete Season 5 to unlock'), findsOneWidget);
+    expect(find.text('فصل ۶'), findsOneWidget);
+    expect(find.text('برای باز شدن، فصل ۵ را کامل کن'), findsOneWidget);
     expect(find.byIcon(Icons.lock_rounded), findsNWidgets(20));
     expect(_iconButton(tester, 'previous-season').onPressed, isNotNull);
     expect(_iconButton(tester, 'next-season').onPressed, isNull);
@@ -209,9 +213,9 @@ void main() {
     for (var season = 5; season >= 1; season--) {
       await tester.tap(find.byKey(const Key('previous-season')));
       await tester.pump();
-      expect(find.text('Season $season'), findsOneWidget);
+      expect(find.text('فصل ${persianDigits(season)}'), findsOneWidget);
     }
-    expect(find.text('Season 1'), findsOneWidget);
+    expect(find.text('فصل ۱'), findsOneWidget);
   });
 
   testWidgets('locked and completed cells expose accessible states', (
@@ -225,17 +229,17 @@ void main() {
     );
     await _pumpScreen(tester, levels, extraPumps: 2);
 
-    expect(find.text('Progress: 1 / 20'), findsOneWidget);
+    expect(find.text('پیشرفت: ۱ از ۲۰'), findsOneWidget);
     expect(find.byKey(const Key('level-completed-1')), findsOneWidget);
     expect(find.byKey(const Key('level-number-2')), findsOneWidget);
     expect(find.byKey(const Key('level-highlight-2')), findsOneWidget);
     expect(
       tester.getSemantics(find.byKey(const Key('season-1-slot-1'))).label,
-      'Season 1, level 1, completed',
+      'فصل ۱، مرحله ۱، کامل‌شده',
     );
     expect(
       tester.getSemantics(find.byKey(const Key('season-1-slot-3'))).label,
-      'Season 1, level 3, locked',
+      'فصل ۱، مرحله ۳، قفل',
     );
     semantics.dispose();
   });
@@ -255,11 +259,11 @@ void main() {
 
     expect(
       tester.getSemantics(find.byKey(const Key('share-app'))).label,
-      'Share Pathly',
+      'اشتراک‌گذاری گره‌راه',
     );
     expect(
       tester.getSemantics(find.byKey(const Key('season-1-slot-1'))).label,
-      'Season 1, level 1, current available',
+      'فصل ۱، مرحله ۱، مرحلهٔ فعلی',
     );
     expect(
       tester
@@ -270,7 +274,7 @@ void main() {
             ),
           )
           .message,
-      'Share Pathly',
+      'اشتراک‌گذاری گره‌راه',
     );
 
     await _tapShare(tester);
@@ -313,7 +317,7 @@ void main() {
     await tester.pump();
 
     expect(find.byKey(const Key('share-error-snackbar')), findsOneWidget);
-    expect(find.text('Unable to share Pathly right now.'), findsOneWidget);
+    expect(find.text('فعلاً امکان اشتراک‌گذاری بازی نیست.'), findsOneWidget);
   });
 
   testWidgets('share cancellation does not show an error', (tester) async {
@@ -329,19 +333,19 @@ void main() {
 
   test('share copy is centralized and contains the permanent store link', () {
     expect(
-      pathlyShareMessage,
-      'Try Pathly — a relaxing path-connecting puzzle game!\n\n'
-      'https://play.google.com/store/apps/details?id=com.damostudio.pathly',
+      gerehrahShareMessage,
+      'گره‌راه رو امتحان کن؛ نقطه‌های هم‌رنگ رو وصل کن و همهٔ صفحه رو پر کن!\n\n'
+      'https://cafebazaar.ir/app/com.damostudio.gerehrah',
     );
     expect(
-      pathlyShareMessage,
-      contains('Try Pathly — a relaxing path-connecting puzzle game!'),
-    );
-    expect(
-      pathlyShareMessage,
+      gerehrahShareMessage,
       contains(
-        'https://play.google.com/store/apps/details?id=com.damostudio.pathly',
+        'گره‌راه رو امتحان کن؛ نقطه‌های هم‌رنگ رو وصل کن و همهٔ صفحه رو پر کن!',
       ),
+    );
+    expect(
+      gerehrahShareMessage,
+      contains('https://cafebazaar.ir/app/com.damostudio.gerehrah'),
     );
   });
 
@@ -357,8 +361,8 @@ void main() {
     await tester.tap(find.byKey(const Key('season-1-slot-1')));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 400));
-    expect(find.textContaining('Crossroads'), findsOneWidget);
-    expect(find.text('Moves: 0'), findsOneWidget);
+    expect(find.textContaining('چهارراه'), findsOneWidget);
+    expect(find.text('حرکت: ۰'), findsOneWidget);
   });
 
   testWidgets('long press exposes records but locked cells expose no details', (
@@ -375,19 +379,19 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.byKey(const Key('level-details')), findsOneWidget);
-    expect(find.text('Level 1 · Crossroads'), findsOneWidget);
-    expect(find.text('Board: 4x4'), findsOneWidget);
-    expect(find.text('Best moves: 7'), findsOneWidget);
-    expect(find.text('Best time: 01:05'), findsOneWidget);
+    expect(find.text('مرحله ۱ · چهارراه'), findsOneWidget);
+    expect(find.text('صفحه: ۴×۴'), findsOneWidget);
+    expect(find.text('کمترین حرکت: ۷'), findsOneWidget);
+    expect(find.text('بهترین زمان: ۰۱:۰۵'), findsOneWidget);
 
     await tester.tapAt(const Offset(10, 10));
     await tester.pumpAndSettle();
     await tester.longPress(find.byKey(const Key('season-1-slot-2')));
     await tester.pumpAndSettle();
-    expect(find.text('Level 2 · Three Lanes'), findsOneWidget);
-    expect(find.text('Board: 5x5'), findsOneWidget);
-    expect(find.text('Best moves: —'), findsOneWidget);
-    expect(find.text('Best time: —'), findsOneWidget);
+    expect(find.text('مرحله ۲ · سه مسیر'), findsOneWidget);
+    expect(find.text('صفحه: ۵×۵'), findsOneWidget);
+    expect(find.text('کمترین حرکت: —'), findsOneWidget);
+    expect(find.text('بهترین زمان: —'), findsOneWidget);
 
     await tester.tapAt(const Offset(10, 10));
     await tester.pumpAndSettle();
@@ -426,13 +430,13 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 400));
 
-    expect(find.text('Progress: 1 / 20'), findsOneWidget);
+    expect(find.text('پیشرفت: ۱ از ۲۰'), findsOneWidget);
     expect(find.byKey(const Key('level-completed-1')), findsOneWidget);
     expect(find.byKey(const Key('level-number-2')), findsOneWidget);
     expect(repository.completedLevels, contains('crossroads-4'));
   });
 
-  testWidgets('Season 2 unlocks sequentially with independent progress', (
+  testWidgets('فصل ۲ unlocks sequentially with independent progress', (
     tester,
   ) async {
     await _completeSeasonOne(levels);
@@ -441,9 +445,9 @@ void main() {
     await tester.tap(find.byKey(const Key('next-season')));
     await tester.pump();
 
-    expect(find.text('Season 2'), findsOneWidget);
-    expect(find.text('Complete Season 1 to unlock'), findsNothing);
-    expect(find.text('Progress: 0 / 20'), findsOneWidget);
+    expect(find.text('فصل ۲'), findsOneWidget);
+    expect(find.text('برای باز شدن، فصل ۱ را کامل کن'), findsNothing);
+    expect(find.text('پیشرفت: ۰ از ۲۰'), findsOneWidget);
     expect(find.byKey(const Key('level-number-1')), findsOneWidget);
     expect(find.byKey(const Key('level-lock-2')), findsOneWidget);
     expect(find.byIcon(Icons.lock_rounded), findsNWidgets(19));
@@ -451,16 +455,16 @@ void main() {
     final semantics = tester.ensureSemantics();
     expect(
       tester.getSemantics(find.byKey(const Key('season-2-slot-1'))).label,
-      'Season 2, level 1, current available',
+      'فصل ۲، مرحله ۱، مرحلهٔ فعلی',
     );
     expect(
       tester.getSemantics(find.byKey(const Key('season-2-slot-2'))).label,
-      'Season 2, level 2, locked',
+      'فصل ۲، مرحله ۲، قفل',
     );
     semantics.dispose();
   });
 
-  testWidgets('Season 2 records open only for unlocked cells', (tester) async {
+  testWidgets('فصل ۲ records open only for unlocked cells', (tester) async {
     await _completeSeasonOne(levels);
     await SharedPreferencesProgressRepository().saveCompletedLevel(
       levelId: levels[20].id,
@@ -471,13 +475,13 @@ void main() {
     await tester.tap(find.byKey(const Key('next-season')));
     await tester.pump();
 
-    expect(find.text('Progress: 1 / 20'), findsOneWidget);
+    expect(find.text('پیشرفت: ۱ از ۲۰'), findsOneWidget);
     await tester.longPress(find.byKey(const Key('season-2-slot-1')));
     await tester.pumpAndSettle();
-    expect(find.text('Level 1 · Tangled Trail'), findsOneWidget);
-    expect(find.text('Board: 5x5'), findsOneWidget);
-    expect(find.text('Best moves: 14'), findsOneWidget);
-    expect(find.text('Best time: 01:35'), findsOneWidget);
+    expect(find.text('مرحله ۱ · راه پرگره'), findsOneWidget);
+    expect(find.text('صفحه: ۵×۵'), findsOneWidget);
+    expect(find.text('کمترین حرکت: ۱۴'), findsOneWidget);
+    expect(find.text('بهترین زمان: ۰۱:۳۵'), findsOneWidget);
 
     await tester.tapAt(const Offset(10, 10));
     await tester.pumpAndSettle();
@@ -486,7 +490,7 @@ void main() {
     expect(find.byKey(const Key('level-details')), findsNothing);
   });
 
-  testWidgets('Season 5 starts with only its local Level 1 available', (
+  testWidgets('فصل ۵ starts with only its local مرحله ۱ available', (
     tester,
   ) async {
     await _completeLevels(levels.take(80));
@@ -496,9 +500,9 @@ void main() {
       await tester.pump();
     }
 
-    expect(find.text('Season 5'), findsOneWidget);
-    expect(find.text('Complete Season 4 to unlock'), findsNothing);
-    expect(find.text('Progress: 0 / 20'), findsOneWidget);
+    expect(find.text('فصل ۵'), findsOneWidget);
+    expect(find.text('برای باز شدن، فصل ۴ را کامل کن'), findsNothing);
+    expect(find.text('پیشرفت: ۰ از ۲۰'), findsOneWidget);
     expect(find.byKey(const Key('level-number-1')), findsOneWidget);
     expect(find.byKey(const Key('level-lock-2')), findsOneWidget);
     expect(find.byIcon(Icons.lock_rounded), findsNWidgets(19));
@@ -506,7 +510,7 @@ void main() {
     final semantics = tester.ensureSemantics();
     expect(
       tester.getSemantics(find.byKey(const Key('season-5-slot-1'))).label,
-      'Season 5, level 1, current available',
+      'فصل ۵، مرحله ۱، مرحلهٔ فعلی',
     );
     semantics.dispose();
   });
@@ -514,11 +518,7 @@ void main() {
   testWidgets('Seasons 3 through 5 expose persisted records', (tester) async {
     await _completeLevels(levels.take(81));
     await _pumpScreen(tester, levels, extraPumps: 2);
-    const expectedTitles = {
-      3: 'Ordered Passage',
-      4: 'Master Entry',
-      5: 'Grand Entry',
-    };
+    const expectedTitles = {3: 'گذر منظم', 4: 'ورودی استاد', 5: 'ورودی بزرگ'};
 
     for (var season = 2; season <= 5; season++) {
       await tester.tap(find.byKey(const Key('next-season')));
@@ -526,10 +526,10 @@ void main() {
       if (season < 3) continue;
       await tester.longPress(find.byKey(Key('season-$season-slot-1')));
       await tester.pumpAndSettle();
-      expect(find.text('Level 1 · ${expectedTitles[season]}'), findsOneWidget);
-      expect(find.text('Board: 6x6'), findsOneWidget);
-      expect(find.text('Best moves: 10'), findsOneWidget);
-      expect(find.text('Best time: 01:00'), findsOneWidget);
+      expect(find.text('مرحله ۱ · ${expectedTitles[season]}'), findsOneWidget);
+      expect(find.text('صفحه: ۶×۶'), findsOneWidget);
+      expect(find.text('کمترین حرکت: ۱۰'), findsOneWidget);
+      expect(find.text('بهترین زمان: ۰۱:۰۰'), findsOneWidget);
       await tester.tapAt(const Offset(10, 10));
       await tester.pumpAndSettle();
     }

@@ -1,20 +1,25 @@
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pathly/share/app_share_service.dart';
+import 'package:gerehrah/share/app_share_service.dart';
 
 void main() {
-  const expectedIdentifier = 'com.damostudio.pathly';
-  final retiredIdentifier = ['com', 'pathlygame', 'pathly'].join('.');
+  const expectedIdentifier = 'com.damostudio.gerehrah';
+  final retiredIdentifier = [
+    'com',
+    'damostudio',
+    'path'
+        'ly',
+  ].join('.');
 
   test('Android and Dart use the publication identifier and share channel', () {
     const expectedChannel = '$expectedIdentifier/share';
     final gradle = File('android/app/build.gradle.kts').readAsStringSync();
     final activity = File(
-      'android/app/src/main/kotlin/com/damostudio/pathly/MainActivity.kt',
+      'android/app/src/main/kotlin/com/damostudio/gerehrah/MainActivity.kt',
     ).readAsStringSync();
 
-    expect(pathlyShareChannelName, expectedChannel);
+    expect(gerehrahShareChannelName, expectedChannel);
     expect(gradle, contains('namespace = "$expectedIdentifier"'));
     expect(gradle, contains('applicationId = "$expectedIdentifier"'));
     expect(activity, contains('package $expectedIdentifier'));

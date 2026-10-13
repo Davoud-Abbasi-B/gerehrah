@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pathly/game/grid_cell.dart';
-import 'package:pathly/game/puzzle_level.dart';
-import 'package:pathly/game/puzzle_solution_validator.dart';
+import 'package:gerehrah/game/grid_cell.dart';
+import 'package:gerehrah/game/puzzle_level.dart';
+import 'package:gerehrah/game/puzzle_solution_validator.dart';
 
 void main() {
   const validator = PuzzleSolutionValidator();

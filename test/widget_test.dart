@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pathly/analytics/app_analytics_service.dart';
-import 'package:pathly/game/grid_cell.dart';
-import 'package:pathly/game/level_repository.dart';
-import 'package:pathly/game/level_timer.dart';
-import 'package:pathly/game/path_board.dart';
-import 'package:pathly/game/pathly_game.dart';
-import 'package:pathly/game/pathly_screen.dart';
-import 'package:pathly/game/puzzle_level.dart';
-import 'package:pathly/progress/progress_repository.dart';
+import 'package:gerehrah/analytics/app_analytics_service.dart';
+import 'package:gerehrah/game/grid_cell.dart';
+import 'package:gerehrah/game/level_repository.dart';
+import 'package:gerehrah/game/level_timer.dart';
+import 'package:gerehrah/game/path_board.dart';
+import 'package:gerehrah/game/gerehrah_game.dart';
+import 'package:gerehrah/game/gerehrah_screen.dart';
+import 'package:gerehrah/game/puzzle_level.dart';
+import 'package:gerehrah/progress/progress_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -23,16 +23,16 @@ void main() {
     tester,
   ) async {
     SharedPreferences.setMockInitialValues({});
-    await tester.pumpWidget(MaterialApp(home: PathlyScreen(levels: levels)));
+    await tester.pumpWidget(MaterialApp(home: GerehrahScreen(levels: levels)));
 
-    expect(find.text('Reset'), findsOneWidget);
-    expect(find.text('Undo'), findsOneWidget);
-    expect(find.text('Moves: 0'), findsOneWidget);
-    expect(find.text('Time: 00:00'), findsOneWidget);
+    expect(find.text('شروع دوباره'), findsOneWidget);
+    expect(find.text('بازگشت'), findsOneWidget);
+    expect(find.text('حرکت: ۰'), findsOneWidget);
+    expect(find.text('زمان: ۰۰:۰۰'), findsOneWidget);
     expect(find.textContaining('Hints:'), findsNothing);
     expect(find.byKey(const Key('hint')), findsNothing);
-    expect(find.text('Connected!'), findsNothing);
-    expect(find.text('Level 1 • Crossroads'), findsOneWidget);
+    expect(find.text('مرحله کامل شد!'), findsNothing);
+    expect(find.text('مرحله ۱ • چهارراه'), findsOneWidget);
     expect(
       tester.widget<OutlinedButton>(find.byKey(const Key('undo'))).onPressed,
       isNull,
@@ -55,14 +55,14 @@ void main() {
         timeSeconds: 65,
       );
 
-      await tester.pumpWidget(MaterialApp(home: PathlyScreen(levels: levels)));
+      await tester.pumpWidget(MaterialApp(home: GerehrahScreen(levels: levels)));
       await tester.pump();
       await tester.pump();
 
-      expect(find.text('Level 1 • Crossroads'), findsOneWidget);
-      expect(find.text('1 ✓'), findsOneWidget);
+      expect(find.text('مرحله ۱ • چهارراه'), findsOneWidget);
+      expect(find.text('۱ ✓'), findsOneWidget);
       expect(find.byKey(const Key('title-solved-indicator')), findsNothing);
-      expect(find.text('Best Moves: 7  •  Best Time: 01:05'), findsOneWidget);
+      expect(find.text('کمترین حرکت: ۷  •  بهترین زمان: ۰۱:۰۵'), findsOneWidget);
       expect(
         tester.widget<TextButton>(find.byKey(const Key('level-2'))).onPressed,
         isNotNull,
@@ -77,7 +77,7 @@ void main() {
     late PathBoard board;
     await tester.pumpWidget(
       MaterialApp(
-        home: PathlyScreen(
+        home: GerehrahScreen(
           levels: levels,
           boardFactory: (level) {
             board = PathBoard(level);
@@ -100,7 +100,7 @@ void main() {
     await _pumpGameState(tester);
     expect(find.byKey(const Key('title-solved-indicator')), findsOneWidget);
 
-    await tester.tap(find.text('Reset'));
+    await tester.tap(find.text('شروع دوباره'));
     await _pumpGameState(tester);
     expect(find.byKey(const Key('title-solved-indicator')), findsNothing);
   });
@@ -113,7 +113,7 @@ void main() {
     late PathBoard board;
     await tester.pumpWidget(
       MaterialApp(
-        home: PathlyScreen(
+        home: GerehrahScreen(
           levels: levels,
           boardFactory: (level) {
             board = PathBoard(level, timer: LevelTimer(source: source));
@@ -133,7 +133,7 @@ void main() {
     await tester.pump();
 
     expect(tester.takeException(), isNull);
-    expect(find.text('Time: 00:01'), findsOneWidget);
+    expect(find.text('زمان: ۰۰:۰۱'), findsOneWidget);
   });
 
   testWidgets(
@@ -145,7 +145,7 @@ void main() {
       late PathBoard board;
       await tester.pumpWidget(
         MaterialApp(
-          home: PathlyScreen(
+          home: GerehrahScreen(
             levels: levels,
             progressRepository: repository,
             analyticsService: analytics,
@@ -159,7 +159,7 @@ void main() {
       await tester.pump();
 
       expect(analytics.completions, isEmpty);
-      await tester.tap(find.text('Reset'));
+      await tester.tap(find.text('شروع دوباره'));
       await _pumpGameState(tester);
       expect(analytics.completions, isEmpty);
 
@@ -198,7 +198,7 @@ void main() {
     late PathBoard board;
     await tester.pumpWidget(
       MaterialApp(
-        home: PathlyScreen(
+        home: GerehrahScreen(
           levels: levels,
           progressRepository: repository,
           analyticsService: analytics,
@@ -226,7 +226,7 @@ void main() {
       late PathBoard board;
       await tester.pumpWidget(
         MaterialApp(
-          home: PathlyScreen(
+          home: GerehrahScreen(
             levels: levels,
             analyticsService: analytics,
             boardFactory: (level) {
@@ -241,10 +241,10 @@ void main() {
       final gameRect = tester.getRect(
         find.byKey(const ValueKey('crossroads-4')),
       );
-      final cellSize = (gameRect.width - PathlyGame.gridPadding * 2) / 4;
+      final cellSize = (gameRect.width - GerehrahGame.gridPadding * 2) / 4;
       Offset center(int row, int column) => Offset(
-        gameRect.left + PathlyGame.gridPadding + (column + 0.5) * cellSize,
-        gameRect.top + PathlyGame.gridPadding + (row + 0.5) * cellSize,
+        gameRect.left + GerehrahGame.gridPadding + (column + 0.5) * cellSize,
+        gameRect.top + GerehrahGame.gridPadding + (row + 0.5) * cellSize,
       );
       final gesture = await tester.startGesture(center(0, 0));
       await gesture.moveTo(center(1, 1));

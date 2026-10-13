@@ -1,3 +1,4 @@
+import '../analytics/app_analytics_service.dart';
 import 'package:flutter/material.dart';
 
 class PrivacyPolicyScreen extends StatelessWidget {
@@ -6,7 +7,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Privacy Policy')),
+      appBar: AppBar(title: const Text('حریم خصوصی')),
       body: SafeArea(
         child: Center(
           child: ConstrainedBox(
@@ -18,105 +19,44 @@ class PrivacyPolicyScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    _PolicyHeading('حریم خصوصی گره‌راه'),
                     _PolicyParagraph(
-                      'This Privacy Policy explains how Pathly and its '
-                      'developer, DaMo Studio, handle information when you '
-                      'use the app.',
+                      'این متن توضیح می‌دهد گره‌راه و سازندهٔ آن، DaMo Studio، چه اطلاعاتی را نگه می‌دارند. بازی به ساخت حساب یا وارد کردن اطلاعات شخصی نیاز ندارد.',
                     ),
-                    _PolicyHeading('Information Stored on Your Device'),
+                    _PolicyHeading('پیشرفت بازی روی دستگاه'),
                     _PolicyParagraph(
-                      'Pathly stores gameplay progress locally on your device, '
-                      'including completed level identifiers, best move '
-                      'counts, and best completion times.',
+                      'شناسهٔ مرحله‌های کامل‌شده، کمترین تعداد حرکت، بهترین زمان و وضعیت تکمیل آموزش روی دستگاه شما ذخیره می‌شوند. با حذف داده‌های برنامه یا پاک کردن بازی این داده‌ها حذف می‌شوند. پشتیبان‌گیری سیستم‌عامل ممکن است روی بازیابی آن‌ها اثر بگذارد.',
                     ),
+                    _PolicyHeading('آمار استفاده و گزارش خطا'),
                     _PolicyParagraph(
-                      'Local progress is not used for cloud account sync and '
-                      'is not uploaded as a player profile.',
-                    ),
-                    _PolicyHeading('Analytics'),
-                    _PolicyParagraph(
-                      'Pathly uses Firebase Analytics to understand how the '
-                      'app is used and to improve the game. Firebase Analytics '
-                      'may collect or process app interactions, app lifecycle '
-                      'and activity information, device and app information, '
-                      'app-instance identifiers or similar Firebase-generated '
-                      'identifiers, and approximate or coarse geographic '
-                      'information derived by Firebase from network '
-                      'information where applicable.',
+                      firebaseEnabled
+                          ? 'در این نسخه Firebase Analytics و Firebase Crashlytics با پیکربندی مستقل گره‌راه فعال هستند.'
+                          : 'در این نسخه ارسال آمار و گزارش خطا با Firebase Analytics و Firebase Crashlytics غیرفعال است. فعال‌سازی در نسخه‌های بعدی فقط با پیکربندی مستقل گره‌راه انجام می‌شود.',
                     ),
                     _PolicyParagraph(
-                      'Advertising ID collection is disabled by Pathly. Pathly '
-                      'does not request Android location permissions and does '
-                      'not collect precise GPS location.',
+                      'اگر این خدمات فعال باشند، Firebase Analytics ممکن است نسخهٔ برنامه، نوع دستگاه، سیستم‌عامل، شناسهٔ نمونهٔ برنامه و اطلاعات تقریبی منطقه را از ارتباط شبکه پردازش کند. جمع‌آوری شناسهٔ تبلیغاتی (AD_ID) غیرفعال است و موقعیت دقیق GPS دریافت نمی‌شود.',
                     ),
                     _PolicyParagraph(
-                      'Pathly logs these gameplay and usage metrics:\n'
-                      '• share_app_click when the Share Pathly button is tapped\n'
-                      '• level_complete when a level is successfully completed',
+                      'رویدادهای استفاده شامل اشتراک‌گذاری (share_app_click)، نمایش و تکمیل آموزش (tutorial_view و tutorial_complete)، حرکت نامعتبر (invalid_move) و تکمیل مرحله (level_complete) هستند. اطلاعات تکمیل مرحله شامل شناسهٔ مرحله، شمارهٔ فصل و مرحله، تعداد حرکت و زمان حل است.',
                     ),
                     _PolicyParagraph(
-                      'The level_complete event may include the level '
-                      'identifier, season number, level number, move count, and '
-                      'completion time. These are gameplay and usage metrics, '
-                      'not personal profile information.',
+                      'در صورت فعال بودن Firebase Crashlytics، گزارش‌ها می‌توانند شامل شرح خطا، مسیر اجرای کد، وضعیت مرتبط دستگاه یا برنامه، شناسهٔ نصب و اطلاعات تشخیصی نشست باشند. بازی برای گزارش خطا رمز عبور، پیام، عکس، صدای ضبط‌شده یا موقعیت دقیق دریافت نمی‌کند.',
                     ),
-                    _PolicyHeading('Crash Reporting'),
+                    _PolicyHeading('خدمات دیگر و نگهداری اطلاعات'),
                     _PolicyParagraph(
-                      'Pathly uses Firebase Crashlytics to diagnose crashes and '
-                      'improve app stability. Crashlytics may process crash '
-                      'logs, stack traces, app or device state relevant to a '
-                      'crash, installation identifiers, and session-related '
-                      'diagnostic information.',
+                      'خدمات Firebase توسط Google ارائه می‌شوند. در صورت فعال‌سازی، داده‌ها طبق شرایط و سیاست‌های Google و Firebase پردازش و بر اساس تنظیمات آن خدمات نگهداری می‌شوند. گره‌راه و DaMo Studio اطلاعات شخصی را نمی‌فروشند. بازی فرم یا حسابی برای دریافت مستقیم اطلاعات شخصی، از جمله از کودکان، ندارد.',
                     ),
+                    _PolicyHeading('اشتراک‌گذاری بازی'),
                     _PolicyParagraph(
-                      'Pathly does not manually collect passwords, contacts, '
-                      'messages, photos, microphone recordings, or precise '
-                      'location for crash reporting.',
+                      'دکمهٔ اشتراک‌گذاری، پنجرهٔ اشتراک‌گذاری اندروید را باز می‌کند و متن معرفی بازی و پیوند کافه‌بازار را به برنامه‌ای که انتخاب می‌کنید می‌فرستد. گره‌راه مخاطب یا مقصد انتخابی شما را دریافت نمی‌کند. در صورت فعال بودن آمار، زدن این دکمه ثبت می‌شود.',
                     ),
-                    _PolicyHeading('Sharing'),
+                    _PolicyHeading('دسترسی‌ها'),
                     _PolicyParagraph(
-                      'The Share Pathly feature opens the Android system share '
-                      'chooser and shares a fixed promotional message. Pathly '
-                      'does not read your contacts or inspect the share '
-                      'destination you select. Tapping the Share Pathly button '
-                      'is logged as a Firebase Analytics interaction.',
+                      'گره‌راه دسترسی به مخاطبان، دوربین، میکروفون، عکس‌ها یا موقعیت دقیق را درخواست نمی‌کند. در صورت فعال بودن خدمات آنلاین، ارتباط شبکه برای ارسال آمار و گزارش خطا استفاده می‌شود.',
                     ),
-                    _PolicyHeading('Third-Party Services'),
+                    _PolicyHeading('تماس با سازنده'),
                     _PolicyParagraph(
-                      'Firebase Analytics and Firebase Crashlytics are provided '
-                      'by Google. Analytics and Crashlytics data may be '
-                      'processed by Google and Firebase according to their '
-                      'applicable terms and privacy practices. Pathly and DaMo '
-                      'Studio do not sell personal information.',
-                    ),
-                    _PolicyHeading('Data Retention and Deletion'),
-                    _PolicyParagraph(
-                      'Local gameplay progress remains on your device until you '
-                      "clear Pathly's app data or uninstall Pathly.",
-                    ),
-                    _PolicyParagraph(
-                      'Retention of Firebase Analytics and Crashlytics data is '
-                      'managed through Firebase and Google service settings and '
-                      'policies.',
-                    ),
-                    _PolicyHeading("Children's Privacy"),
-                    _PolicyParagraph(
-                      'Pathly does not knowingly collect personal information '
-                      'directly through forms, accounts, or user-submitted '
-                      'profiles.',
-                    ),
-                    _PolicyHeading('Permissions'),
-                    _PolicyParagraph(
-                      'Pathly does not request access to contacts, the camera, '
-                      'the microphone, photos or media, or precise location.',
-                    ),
-                    _PolicyHeading('Contact'),
-                    _PolicyParagraph(
-                      'Developer: DaMo Studio\n'
-                      'Website: https://damo-studio.com\n'
-                      'Privacy Policy: '
-                      'https://damo-studio.com/pathly-privacypolicy\n'
-                      'Privacy contact: info@damo-studio.com',
+                      'سازنده: DaMo Studio\nوب‌سایت: https://damo-studio.com\nایمیل: info@damo-studio.com',
                       key: Key('privacy-policy-contact'),
                     ),
                   ],
