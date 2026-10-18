@@ -1,41 +1,178 @@
 # Gerehrah / گره‌راه
 
-Persian RTL puzzle game built with Flutter + Flame for Cafe Bazaar.
-Android package: `com.damostudio.gerehrah`. Initial version: `1.0.0+1`.
-All 100 levels retain their original gameplay geometry and rules.
+**A Persian RTL path-puzzle game built with Flutter + Flame.**
 
-```sh
+Gerehrah is a mobile puzzle game with **100 playable levels**, structured progression, local save state, Persian UX, and optional product analytics. It was built as a complete mobile product rather than a one-screen prototype, including gameplay logic, onboarding, progression, analytics instrumentation, testing, and Android release preparation.
+
+## Why I built it
+
+I wanted to build and ship a consumer mobile product outside my core marketing work and use AI-assisted development as a practical way to move from idea to working software.
+
+The project was developed with **OpenAI Codex + VS Code** as part of an AI-assisted workflow: defining the product and rules, implementing features, debugging, validating gameplay, instrumenting analytics, and preparing release builds.
+
+## Highlights
+
+- 100 puzzle levels
+- Persian-first RTL interface
+- Flutter + Flame gameplay layer
+- Level selection and progression
+- 20-level season structure
+- Local progress persistence
+- Tutorial / onboarding flow
+- Puzzle validation and solver logic
+- Level-quality validation
+- Share flow
+- Optional Firebase Analytics
+- Optional Firebase Crashlytics
+- Custom product analytics events
+- Android release/signing workflow
+- Vazirmatn Persian typography
+
+## Product analytics
+
+The game includes product events for understanding user behavior, including:
+
+- Tutorial viewed
+- Tutorial completed
+- Invalid move
+- Level completed
+- App share click
+
+Level-completion events include contextual properties such as:
+
+- level ID
+- season number
+- level number
+- move count
+- completion time
+
+This was intentional: I wanted the product to be measurable, not just playable.
+
+## Tech stack
+
+- **Flutter / Dart**
+- **Flame**
+- **SharedPreferences** for local progression
+- **Firebase Analytics** — optional
+- **Firebase Crashlytics** — optional
+- **Material 3**
+- **Vazirmatn** font
+- JSON/assets-based level catalog
+
+Android package:
+
+```text
+com.damostudio.gerehrah
+```
+
+Initial app version:
+
+```text
+1.0.0+1
+```
+
+## AI-assisted development
+
+Gerehrah is one of my hands-on AI-native building projects.
+
+My workflow included:
+
+1. Defining gameplay rules and product behavior
+2. Breaking the product into implementation tasks
+3. Using OpenAI Codex to accelerate coding and refactoring
+4. Reviewing code and debugging in VS Code
+5. Building validators and tests around game behavior
+6. Instrumenting analytics events
+7. Preparing Android release builds and signing configuration
+
+The purpose of the AI workflow was not to avoid engineering decisions; it was to **reduce the distance between product idea and shipped implementation**.
+
+## Project structure
+
+```text
+lib/
+├── analytics/      # Product analytics
+├── game/           # Gameplay, board, solver, validation, timer
+├── home/           # Level selection and season structure
+├── localization/   # Persian helpers
+├── onboarding/     # Tutorial / onboarding
+├── privacy/        # Privacy-related UI/content
+├── progress/       # Local progress state
+└── share/          # Share flow
+```
+
+## Run locally
+
+```bash
 flutter pub get
 flutter run
+```
+
+Useful development commands:
+
+```bash
 flutter analyze
 flutter test
 flutter build apk --debug
 flutter build apk --release
 ```
 
-Firebase is disabled by default. Firebase credentials and signing secrets are not stored in Git.
-Create a new Firebase project and register Android app `com.damostudio.gerehrah`.
-Download its `google-services.json` to ignored `android/app/google-services.json`.
-To enable Firebase explicitly, set `enableFirebase=true` in your local `~/.gradle/gradle.properties`
-and run/build with `--dart-define=ENABLE_FIREBASE=true`. Both settings are required.
-Gradle rejects Firebase clients with another package. Analytics event names remain unchanged.
-Advertising ID collection stays disabled.
+## Firebase configuration
 
-Generate a new Gerehrah production keystore, keep it outside Git, and create ignored
-`android/key.properties` with `storeFile`, `storePassword`, `keyAlias` and `keyPassword`.
-Use an absolute `storeFile` path (relative paths resolve from `android/app/`).
-Without signing properties, release APKs are unsigned and cannot be published.
-Back up the new key securely and use it for future updates.
-Android launcher icons and the home header use `assets/gerehrah_icon.png`.
-Regenerate legacy, round, and adaptive foreground resources after replacing it:
-`flutter test tool/generate_android_launcher_icons_test.dart`.
-The adaptive foreground keeps the full square image inside the circular safe zone
-on the matching navy background; the original image is never overwritten.
+Firebase is **disabled by default**.
 
-Persian UI typography uses Vazirmatn v33.003 (Regular, Medium, SemiBold, Bold),
-from https://github.com/rastikerdar/vazirmatn under the SIL Open Font License 1.1.
-The bundled license is `assets/fonts/OFL.txt`; Flutter includes it in its license
-registry. The central theme applies the font to all Material screens and labels.
+To enable it:
 
-The legacy local progress key is intentionally preserved for existing installations.
-The independent Android package keeps app storage separate. Tutorial persistence is unchanged.
+1. Create a Firebase project.
+2. Register the Android package `com.damostudio.gerehrah`.
+3. Put `google-services.json` in:
+
+```text
+android/app/google-services.json
+```
+
+4. Set the local Gradle property:
+
+```text
+enableFirebase=true
+```
+
+5. Run or build with:
+
+```bash
+--dart-define=ENABLE_FIREBASE=true
+```
+
+Both switches are required. Firebase credentials are intentionally excluded from Git.
+
+## Release signing
+
+Production signing secrets are not stored in the repository.
+
+Create a production keystore and an ignored `android/key.properties` file containing:
+
+```text
+storeFile=
+storePassword=
+keyAlias=
+keyPassword=
+```
+
+Without signing properties, release APKs remain unsigned.
+
+## Typography
+
+The Persian UI uses **Vazirmatn**. Its bundled license is stored at:
+
+```text
+assets/fonts/OFL.txt
+```
+
+## Portfolio context
+
+Gerehrah is a strong example of how I combine **growth thinking and hands-on building**: I did not stop at the game mechanics; I also built onboarding, progression, analytics instrumentation, retention-oriented structure, and a release-ready workflow.
+
+---
+
+Built by **Davoud Abbasi**  
+Growth marketer & AI-assisted product builder
