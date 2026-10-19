@@ -53,3 +53,6 @@ app.*.map.json
 /android/app/release
 
 android/build/
+
+# Cafe Bazaar signed bundle output
+/app-release.bin

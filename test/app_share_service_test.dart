@@ -8,10 +8,10 @@ void main() {
   const channel = MethodChannel(gerehrahShareChannelName);
   const expectedShareMessage =
       'گره‌راه رو امتحان کن؛ نقطه‌های هم‌رنگ رو وصل کن و همهٔ صفحه رو پر کن!\n\n'
-      'https://cafebazaar.ir/app/com.damostudio.gerehrah';
+      'https://cafebazaar.ir/app/com.modastudio.gerehrah';
 
   test('share channel uses the publication application identifier', () {
-    expect(gerehrahShareChannelName, 'com.damostudio.gerehrah/share');
+    expect(gerehrahShareChannelName, 'com.modastudio.gerehrah/share');
   });
 
   tearDown(() {

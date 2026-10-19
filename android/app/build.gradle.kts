@@ -31,8 +31,8 @@ if (firebaseEnabled) {
     require(clients.any {
         val info = (it as? Map<*, *>)?.get("client_info") as? Map<*, *>
         val androidInfo = info?.get("android_client_info") as? Map<*, *>
-        androidInfo?.get("package_name") == "com.damostudio.gerehrah"
-    }) { "Firebase configuration must contain an Android client for com.damostudio.gerehrah." }
+        androidInfo?.get("package_name") == "com.modastudio.gerehrah"
+    }) { "Firebase configuration must contain an Android client for com.modastudio.gerehrah." }
     apply(plugin = "com.google.gms.google-services")
     apply(plugin = "com.google.firebase.crashlytics")
 }
@@ -45,7 +45,7 @@ if (hasReleaseSigning) {
 }
 
 android {
-    namespace = "com.damostudio.gerehrah"
+    namespace = "com.modastudio.gerehrah"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -55,7 +55,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.damostudio.gerehrah"
+        applicationId = "com.modastudio.gerehrah"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion

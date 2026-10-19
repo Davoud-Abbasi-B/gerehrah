@@ -2,8 +2,8 @@ import 'package:flutter/services.dart';
 
 const gerehrahShareMessage =
     'گره‌راه رو امتحان کن؛ نقطه‌های هم‌رنگ رو وصل کن و همهٔ صفحه رو پر کن!\n\n'
-    'https://cafebazaar.ir/app/com.damostudio.gerehrah';
-const gerehrahShareChannelName = 'com.damostudio.gerehrah/share';
+    'https://cafebazaar.ir/app/com.modastudio.gerehrah';
+const gerehrahShareChannelName = 'com.modastudio.gerehrah/share';
 const gerehrahShareMethodName = 'shareText';
 
 abstract interface class AppShareService {

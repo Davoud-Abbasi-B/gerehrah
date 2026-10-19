@@ -4,7 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:gerehrah/share/app_share_service.dart';
 
 void main() {
-  const expectedIdentifier = 'com.damostudio.gerehrah';
+  const expectedIdentifier = 'com.modastudio.gerehrah';
+  final retiredPackage = ['com', 'damostudio', 'gerehrah'].join('.');
   final retiredIdentifier = [
     'com',
     'damostudio',
@@ -16,7 +17,7 @@ void main() {
     const expectedChannel = '$expectedIdentifier/share';
     final gradle = File('android/app/build.gradle.kts').readAsStringSync();
     final activity = File(
-      'android/app/src/main/kotlin/com/damostudio/gerehrah/MainActivity.kt',
+      'android/app/src/main/kotlin/com/modastudio/gerehrah/MainActivity.kt',
     ).readAsStringSync();
 
     expect(gerehrahShareChannelName, expectedChannel);
@@ -41,7 +42,7 @@ void main() {
     for (final file in sourceFiles) {
       expect(
         file.readAsStringSync(),
-        isNot(contains(retiredIdentifier)),
+        isNot(anyOf(contains(retiredIdentifier), contains(retiredPackage))),
         reason: file.path,
       );
     }

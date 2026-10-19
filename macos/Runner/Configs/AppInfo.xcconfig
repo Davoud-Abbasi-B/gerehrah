@@ -8,7 +8,7 @@
 PRODUCT_NAME = gerehrah
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.damostudio.gerehrah
+PRODUCT_BUNDLE_IDENTIFIER = com.modastudio.gerehrah
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2026 com.damostudio. All rights reserved.

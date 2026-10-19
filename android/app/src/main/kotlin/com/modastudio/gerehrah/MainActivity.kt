@@ -1,4 +1,4 @@
-package com.damostudio.gerehrah
+package com.modastudio.gerehrah
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
@@ -54,7 +54,7 @@ class MainActivity : FlutterActivity() {
     }
 
     private companion object {
-        const val SHARE_CHANNEL = "com.damostudio.gerehrah/share"
+        const val SHARE_CHANNEL = "com.modastudio.gerehrah/share"
         const val SHARE_METHOD = "shareText"
     }
 }

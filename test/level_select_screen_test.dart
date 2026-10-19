@@ -335,7 +335,7 @@ void main() {
     expect(
       gerehrahShareMessage,
       'گره‌راه رو امتحان کن؛ نقطه‌های هم‌رنگ رو وصل کن و همهٔ صفحه رو پر کن!\n\n'
-      'https://cafebazaar.ir/app/com.damostudio.gerehrah',
+      'https://cafebazaar.ir/app/com.modastudio.gerehrah',
     );
     expect(
       gerehrahShareMessage,
@@ -345,7 +345,7 @@ void main() {
     );
     expect(
       gerehrahShareMessage,
-      contains('https://cafebazaar.ir/app/com.damostudio.gerehrah'),
+      contains('https://cafebazaar.ir/app/com.modastudio.gerehrah'),
     );
   });
 
